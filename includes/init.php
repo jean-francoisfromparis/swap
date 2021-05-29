@@ -20,7 +20,7 @@ $pdo = new PDO(
 );
 
 // Inclusion des fonction du site
-require_once('functions.php');
+require_once('fonction.php');
 
 // Constante du site ---- Chemin------
 define('URL', '/swap/');
@@ -39,5 +39,5 @@ if($recup_infos->rowCount() > 0) {
 
     }
 }
-
+*/
 
