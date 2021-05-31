@@ -1,7 +1,6 @@
 html body {
     min-height: 100vh;
     position: relative;
-    
 }
 @font-face {
     font-family:'AlexBrush-Regular';
@@ -12,31 +11,38 @@ html body {
     font-weight: 600;
     font-size: 3rem;
 }
+main{
+    position: relative;
+    top:8vh;
+    min-height: 100vh;
+}
 footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
 }
-a:hover{
+.effet:hover{
     color:aliceblue !important;
     transform: scale(1.2,1.2);
 }
-a:active{
+.effet:active{
     color:aliceblue !important;
 }
-
 .taille_carousel{
     position: relative;
+    top:0;
     left: 0;
     width:100vw; 
     height:auto;
 }
 .card{
+    border:none;
     position: relative;
     transform: translatex(35%);
     max-width:58%;
     height: auto;
 }
 .card:hover{
+    border:none;
     box-shadow:10px 5px 5px darkgray ;
     transition-property: box-shadow,white;
     transition-duration: 0.3s, 0.3s;
@@ -46,4 +52,53 @@ a:active{
 .titre{
     position: absolute;
     bottom:40%;
+}
+.effet1:hover{
+    color:aliceblue !important;
+    background-color: gray;
+}
+.effet1:active{
+    color:aliceblue !important;
+    background-color: black !important;
+} 
+.effet3:hover{
+    color:cyan !important;
+    transform: scale(1.2,1.2);
+}
+.effet3:active{
+    color:cyan !important;
+} 
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+    border-color: black black black;
+    isolation: isolate;
+    box-shadow:5px 3px 3px darkgray ;
+    transition-property: box-shadow,white;
+    transition-duration: 0.3s, 0.3s;
+    transition-timing-function: ease, ease;
+    transition-delay: 0s, 0s;
+  }
+
+  .nav-tabs .nav-link.active ,
+  .nav-tabs .nav-item.show .nav-link {
+    color: aliceblue;
+    background-color: black;
+    border-color: 1px #dee2e6 #dee2e6 #fff;
+    box-shadow:5px 3px 3px darkgray ;
+    transition-property: box-shadow,white;
+    transition-duration: 0.3s, 0.3s;
+    transition-timing-function: ease, ease;
+    transition-delay: 0s, 0s;
+  } 
+
+.effet2{
+    color: black !important;
+    transition-duration: 0.3s, 0.3s;
+    transition-timing-function: ease, ease;
+}
+.effet2:hover{
+    transform: scale(1.2,1.2) !important;
+}
+.titre1{
+    position: absolute;
+    top:2vh;
 }

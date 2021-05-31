@@ -26,10 +26,10 @@ require_once('fonction.php');
 define('URL', '/swap/');
 
 // Récupération du sous-titre du site, son slogan et son image d'entrée en fonction du profil d'utilisateur
-/*$recup_infos = sql('SELECT * FROM membre');
+$recup_profils = sql('SELECT * FROM membre');
 
-if($recup_infos->rowCount() > 0) {
-    while($membre = $recup_profil->fetch()) {
+if($recup_profils->rowCount() > 0) {
+    while($membre = $recup_profils->fetch()) {
 
         switch ($membre['nom']) {
             case 'title': define('SUBTITLE', $membre['valeur']); break;
@@ -39,5 +39,5 @@ if($recup_infos->rowCount() > 0) {
 
     }
 }
-*/
+
 

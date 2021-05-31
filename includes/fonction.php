@@ -16,15 +16,17 @@ function sql($request, $params = array()) :PDOStatement{
 //function utilisateur 
 function isConnected(): bool
 {
-    return isset($_SESSION['user']); //indicateur d'une connection
+    return isset($_SESSION['user']['statut']); //indicateur d'une connection
 }
 function isAdmin(): bool
 {
-    return (isConnected() && ($_SESSION['user']['droits'] == 1));
+    return (isConnected() && ($_SESSION['user']['statut'] == 1));
 }
-function getUserByLogin(string $login) {
-    $request = sql("SELECT * FROM users WHERE login=:login", array(
-        'login' => $login
+
+//Vérifie l'existence d'un pseudo
+function getUserByLogin(string $pseudo) {
+    $request = sql("SELECT * FROM membre WHERE pseudo=:pseudo", array(
+        'pseudo' => $pseudo,
     ));
     if($request->rowCount() > 0 ) {
         return $request->fetch();
@@ -32,6 +34,7 @@ function getUserByLogin(string $login) {
         return false;
     }
 }
+
 // Message d'alertes
 function add_flash(string $message, string $class) {
     if(!isset($_SESSION['messages'][$class])) {
@@ -46,7 +49,7 @@ function show_flash($option=null): string
     $messages = '';
     if(isset($_SESSION['messages'])) {
         foreach(array_keys($_SESSION['messages']) as $keyName) {
-            $messages .= '<div class="alert alert-dismissible fade show alert-' . $keyName . '"role="alert" data-tor-fx="show:{rotateX.from(90) pull.down(half)} slow">' . implode('<br>', $_SESSION['messages'][$keyName]) . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            $messages .= '<div class="alert alert-dismissible fade show alert-' . $keyName . '" role="alert">' . implode('<br>', $_SESSION['messages'][$keyName]) . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         }
     }
     if($option == 'reset') {
@@ -54,4 +57,11 @@ function show_flash($option=null): string
         unset($_SESSION['messages']);
     }
     return $messages;
+}
+// Vérification des entrées des formulaires
+function valid_donnees ($donnees){
+    $donnees = trim($donnees);
+    $donnees = stripslashes($donnees);
+    $donnees = htmlspecialchars($donnees);
+    return $donnees;
 }
