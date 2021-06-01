@@ -1,5 +1,5 @@
 </main>
-<footer class="container-fluid navbar-dark bg-dark text-info text-center">
+<footer class="container-fluid navbar-dark bg-dark text-info text-center Fixed bottom">
 <div class="row">
 <div class="col py-3">
 <?php echo "Swap.fr ~ 10 Rue de la Bienfaisance ~ 75008 Paris ~ France "?>

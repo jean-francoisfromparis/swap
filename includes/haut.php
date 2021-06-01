@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
  <!-- css principal -->
- <link rel="stylesheet" href="./css/style.css">
+ <link rel="stylesheet" href="<?php echo URL ?>/css/style.css">
  
   <title>SWAP</title>
   </head>
@@ -25,14 +25,14 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-gradient fixed-top ">
     <div class="container-fluid">
-      <a class="navbar-brand ms-lg-5 swap text-info effet" href="index.php">Swap</a>
+      <a class="navbar-brand ms-lg-5 swap text-info effet" href="<?php echo URL ?>index.php">Swap</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active ms-lg-2 fs-3 text-info effet" aria-current="page" href="index.php"><i class="fa fa-home"></i> </a>
+            <a class="nav-link active ms-lg-2 fs-3 text-info effet" aria-current="page" href="<?php echo URL ?>index.php"><i class="fa fa-home"></i> </a>
           </li>
           <li class="nav-item">
             <a class="nav-link ms-lg-2 mt-2 text-info effet" href="<?php echo URL ?>emploi.php">EMPLOI</a>

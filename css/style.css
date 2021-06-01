@@ -16,10 +16,7 @@ main{
     top:8vh;
     min-height: 100vh;
 }
-footer {
-    position: relative;
-    bottom: 0;
-}
+
 .effet:hover{
     color:aliceblue !important;
     transform: scale(1.2,1.2);

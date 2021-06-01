@@ -100,7 +100,7 @@ if (!empty($_POST)){
 
         sql("INSERT INTO membre VALUES (NULL, :pseudo, :mdp, :nom, :prenom, :telephone, :email, :civilite, 0,NOW())", array(
             'pseudo'    => $pseudo,
-            'mdp'       => password_hash($_POST['mdp'], PASSWORD_DEFAULT),
+            'mdp'       => password_hash($mdp, PASSWORD_DEFAULT),
             'nom'       => $nom,
             'prenom'    => $prenom,
             'telephone' => $telephone,

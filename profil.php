@@ -119,86 +119,8 @@ if (!empty($_POST)){
     }
 }
 
-
-
-
-
-
-
-
-
-// if(!empty($_POST)){
-//     $errors = 0;
-//     if(empty($_POST['pseudo']) && $_POST['pseudo'] == $_SESSION['user']['pseudo']){
-//         $errors++;
-//         add_flash('&#9888; Merci de saisir de pseudo', 'danger');
-//     }if(empty($_POST['email']) && $_POST['email'] == $_SESSION['user']['email']){
-//         $errors++;
-//         add_flash('&#9888 Merci de saisir votre adresse email', 'danger');
-//     }else {
-//         if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-//         $errors++;
-//         add_flash("&#9888 L'adresse mail saisie est invalide", 'danger');
-//         }
-//     }
-//     if (empty($_POST['mdp']) && password_verify($_POST['mdp'], $_SESSION['user']['mdp'])==false) {
-//         $errors++;
-//         add_flash('&#9888 Merci de saisir votre mot de passe', 'danger');
-// }
-//     if (empty($_POST['newMdp']) && $_POST['newMdp'] == $_SESSION['user']['mdp']) {
-//         $errors++;
-//         add_flash('&#9888 Merci de saisir votre nouveau mot de passe', 'danger');
-//     } 
-//     else {
-//         $pattern = '#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[\S]{8,20}$#';
-//         if (!preg_match($pattern, $_POST['newMdp'])) {
-//             $errors++;
-//             add_flash('&#9888 Le nouveau mot de passe doit être composé de 8 a 20 caratères comprenant au moins une minuscule, une majuscule et un chiffre', 'danger');
-//         }
-//     }
-//     if (empty($_POST['confirmNewMdp'])) {
-//             $errors++;
-//             add_flash('&#9888  Merci de confirmer le nouveau mot de passe', 'danger');
-//         } else {
-//             if (!empty($_POST['confirmNewMdp']) && $_POST['confirmNewMdp'] !== $_POST['newMdp']) {
-//                 $errors++;
-//                 add_flash('&#9888 La confirmation ne concorde pas avec le nouveau mot de passe saisi', 'danger');
-//             }
-//         }
-//         if (empty($_POST['telephone']) && !empty($_SESSION['user']['telephone'])){
-//             $_SESSION['user']['telephone'] = $_POST['telephone'];
-//         }
-
-//         if ($errors === 0) {
-//             if(isset($_POST['update'])){
-//                 $pseudo         = valid_donnees($_POST['pseudo']);
-//                 $newMdp         = valid_donnees($_POST['newMdp']);
-//                 $email          = valid_donnees($_POST['email']);
-//                 $telephone      = valid_donnees($_POST['telephone']);
-
-    
-//             sql("UPDATE membre SET pseudo=:pseudo, mdp=:newMdp, email=:email, telephone=:telephone  WHERE id_membre=:id_membre ", array(
-//                 'pseudo'    => $pseudo,
-//                 'newMdp'    => password_hash($newMdp, PASSWORD_DEFAULT),
-//                 'email'     => $email,
-//                 'telephone' => $telephone,
-//                 'id_membre' => $_SESSION['user']['id_membre']
-//             ));
-//             $user = getUserByLogin($_POST['pseudo']);
-//             $_SESSION['user'] = $user;
-//             add_flash('👍 Les données de votre profil on été modifié', 'success');
-//                 header('Location:'.URL.'profil.php');
-//                 exit();
-//         }
-//         }
-// }
-
-
-
-
-
 $title= "Profil";
-require_once ('includes/haut.php');
+require_once('includes/haut.php');
 ?>
 <div class="container-fluid titre1">
     <div class="row text-center">
