@@ -122,7 +122,7 @@ if (!empty($_POST)){
 $title= "Profil";
 require_once('includes/haut.php');
 ?>
-<div class="container-fluid titre1">
+<div class="container titre1">
     <div class="row text-center">
         <h1>Bienvenue sur votre profil</h1>
         <hr class="mb-3">

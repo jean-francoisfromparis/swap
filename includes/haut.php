@@ -8,13 +8,17 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"/>
-
-
+    
   <!-- font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <!-- CSS liée au table données -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.25/b-1.7.1/sl-1.3.3/datatables.min.css"/>
  <!-- css principal -->
  <link rel="stylesheet" href="<?php echo URL ?>/css/style.css">
+ 
+
+
  
   <title>SWAP</title>
   </head>
@@ -72,9 +76,10 @@
           <li class="nav-item">
             <a class="nav-link mx-lg-3 fs-3 text-info effet" data-bs-toggle="modal" data-bs-target="#connexionModal" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Connexion/déconnexion" href="<?php echo URL ?>connexion.php"><i class="fas fa-power-off"></i></a>
           </li>
-          <?php if (isConnected()) : ?>
+          <?php if ( isAdmin() || (isConnected())) : ?>
           <li class="nav-item">
-            <a class="nav-link mx-lg-3 fs-3 text-info effet" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profil" href="<?php echo URL ?>profil.php"><i class="far fa-address-card"></i></a><?php echo @$_SESSION['user']['pseudo']?>
+            <a class="nav-link mx-lg-3 fs-3 text-info effet" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Profil" href="<?php echo URL ?>profil.php"><i class="far fa-address-card"></i><br>
+            <span class="fs-6"><?php echo $_SESSION['user']['pseudo']?></span></a>
           </li>
           
           <li class="nav-item">
@@ -84,7 +89,7 @@
         <!-- Dropdown administrateur Gestion du back-office -->
         <?php if(isAdmin()): ?>
           <li class="nav-item dropdown text-info">
-              <a class="nav-link dropdown-toggle mx-lg-2 mt-2 text-info effet" href="<?php echo URL ?>backoffic.php" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle mx-lg-2 mt-2 text-info effet" href="<?php echo URL ?>backoffice.php" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Gestion du Back-office
               </a>
               <ul class="dropdown-menu " aria-labelledby="navbarDropdown2">
@@ -111,4 +116,4 @@
   </div>
 </nav>
 </header>
-<main >
+<main>

@@ -26,7 +26,7 @@ function isAdmin(): bool
 //Vérifie l'existence d'un pseudo
 function getUserByLogin(string $pseudo) {
     $request = sql("SELECT * FROM membre WHERE pseudo=:pseudo", array(
-        'pseudo' => $pseudo,
+        'pseudo' => $pseudo
     ));
     if($request->rowCount() > 0 ) {
         return $request->fetch();

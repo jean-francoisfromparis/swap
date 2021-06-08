@@ -16,7 +16,7 @@ if(isset($_GET['action']) && $_GET['action'] === 'logout') {
 //     header('location:'.URL.'profil.php');
 //     exit();
 // }
-//Traitement du formulaire
+// Traitement du formulaire
 if (!empty($_POST)){
     $errors = 0;
     if(empty($_POST['pseudo'])){
@@ -98,7 +98,7 @@ if (!empty($_POST)){
         $prenom         = valid_donnees($_POST['prenom']);
         $telephone      = valid_donnees($_POST['telephone']);
 
-        sql("INSERT INTO membre VALUES (NULL, :pseudo, :mdp, :nom, :prenom, :telephone, :email, :civilite, 0,NOW())", array(
+        sql("INSERT INTO membre VALUES (NULL, :pseudo, :mdp, :nom, :prenom, :telephone, :email, :civilite, 0, NOW())", array(
             'pseudo'    => $pseudo,
             'mdp'       => password_hash($mdp, PASSWORD_DEFAULT),
             'nom'       => $nom,
@@ -122,7 +122,8 @@ if (!empty($_POST)){
 $title= "Bienvenu sur votre site d'annonce";
 require_once ('includes/haut.php');
 ?>
-<div id="carouselExampleControls" class="carousel slide carousel-fade taille_carousel" data-bs-ride="carousel">
+
+<div id="carousel1" class="carousel slide carousel-fade taille_carousel" data-bs-ride="carousel">
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img src="<?php echo URL ?>photo/bienvenu/photo_bienvenu1.jpg" class="d-block w-100 " alt="immobilier">
@@ -134,15 +135,16 @@ require_once ('includes/haut.php');
       <img src="<?php echo URL ?>photo/bienvenu/photo_bienvenu1.jpg" class="d-block w-100" alt="Annonces">
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+  <button class="carousel-control-prev" type="button" data-bs-target="#carousel1" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+  <button class="carousel-control-next" type="button" data-bs-target="#carousel1" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
 </div>
+
 <div class="container text-center text-info"><h1>Votre site d'Annonce</h1>
 
 <?php echo var_dump($_SESSION) ?></div>
@@ -156,14 +158,14 @@ require_once ('includes/haut.php');
 <?php endif; ?>
 
 
-<div class="container">
-  <div class="row row-cols-1 row-cols-md-2 g-4">
+<div class="container justify-content-center">
+  <div class="row row-cols-1 row-cols-md-2 g-4 card_group">
     <div class="col">
         <div class="card bg-dark rounded text-white">
             <img src="<?php echo URL ?>photo/bienvenu/photo_bienvenu1_sm.jpg" class="card-img" alt="Immobilier">
             <div class="card-img-overlay">
-                <h4 class="card-title titre fw-bold">Immobilier</h4>
-                <p class="card-text position-absolute bottom-0 fs-5 fw-bold"><?php echo $nbannonceImmo ?? '' ?>Annonces immobilières <br> ventes locations appartements maisons  </p>
+                <h3 class="card-title titre position-absolute top-0 fw-bold">Immobilier</h3>
+                <p class="card-text position-absolute bottom-0 fs-6 fw-bold"><?php echo $nbannonceImmo ?? '' ?>Annonces immobilières <br> ventes locations appartements maisons  </p>
             </div>
         </div>
     </div>
@@ -171,17 +173,17 @@ require_once ('includes/haut.php');
         <div class="card bg-dark rounded text-white">
             <img src="<?php echo URL ?>photo/bienvenu/photo_bienvenu2_sm.jpg" class="card-img" alt="Auto/Moto">
             <div class="card-img-overlay">
-                <h4 class="card-title titre fw-bold">Auto/Moto</h4>
-                <p class="card-text position-absolute bottom-0 fs-5 fw-bold"><?php echo $nbannonceAuto ?? '' ?>Annonces Auto/Moto <br> Achats ventes de voitures et deux roues d'occasions</p>
+                <h3 class="card-title position-absolute top-0 titre fw-bold">Auto/Moto</h3>
+                <p class="card-text position-absolute bottom-0 fs-6 fw-bold"><?php echo $nbannonceAuto ?? '' ?>Annonces Auto/Moto <br> Achats ventes de voitures et deux roues d'occasions</p>
             </div>
         </div>
     </div>
     <div class="col">
-        <div class="card bg-dark rounded text-white">
+        <div class="card bg-dark rounded ">
             <img src="<?php echo URL ?>photo/bienvenu/photo_bienvenu3_sm.jpg" class="card-img" alt="Immobilier">
             <div class="card-img-overlay">
-                <h4 class="card-title titre fw-bold">EMPLOI</h4>
-                <p class="card-text position-absolute bottom-0 fs-5 fw-bold"><?php echo $nbannoncejob ?? '' ?>Offres d'emploi </p>
+                <h3 class="card-title titre position-absolute top-0 fw-bold text-black">EMPLOI</h3>
+                <p class="card-text position-absolute bottom-0 fs-6 fw-bold text-white"><?php echo $nbannoncejob ?? '' ?>Offres d'emploi </p>
             </div>
         </div>
     </div>
@@ -189,13 +191,13 @@ require_once ('includes/haut.php');
         <div class="card bg-dark rounded text-white">
             <img src="<?php echo URL ?>photo/bienvenu/photo_bienvenu4_sm.jpg" class="card-img" alt="Immobilier">
             <div class="card-img-overlay">
-                <h4 class="card-title titre fw-bold">VACANCES</h4>
-                <p class="card-text position-absolute bottom-0 fs-5 fw-bold"><?php echo $nbannonceVacances ?? '' ?>Annonces locations vacances<br> Appartement Studio Villa Camping-car  </p>
+                <h3 class="card-title titre position-absolute top-0 fw-bold">VACANCES</h3>
+                <p class="card-text position-absolute bottom-0 fs-6 fw-bold"><?php echo $nbannonceVacances ?? '' ?>Annonces locations vacances<br> Appartement Studio Villa Camping-car  </p>
             </div>
         </div>
     </div>
   </div>
-</div>
+  </div>
 <!-- Modal Inscription -->
 
 <form method="POST">
