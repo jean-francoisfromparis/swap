@@ -121,3 +121,14 @@ footer{
     transform: scale(5,5) !important;
     z-index: 3;
 }
+.titre2{
+    position: relative;
+    top:4vh;
+}
+.text-annonce{
+    text-align: justify;
+}
+.image1{
+    max-width: 250px;
+    height: auto;
+}

@@ -39,5 +39,5 @@ if($recup_profils->rowCount() > 0) {
 
     }
 }
-
+$annonce ='';
 
