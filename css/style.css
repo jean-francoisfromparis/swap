@@ -1,6 +1,6 @@
 html body {
     width: 100vw;
-    min-height: 110%;
+    height: 200vh;
     position: absolute;
 }
 @font-face {
@@ -16,7 +16,8 @@ main{
     position: relative;
     width: 100vw;
     top: 8vh;
-    min-height: 1000px;
+    height: 1500px;
+    
 }
 
 .effet:hover{
@@ -100,7 +101,7 @@ main{
 }
 .titre1{
     position: relative;
-    top:2vh;
+    top:1.5vh;
 }
 .recherchebar{
     position:relative;
@@ -108,19 +109,24 @@ main{
     width: 50vw;
 }
 footer{
+    position: relative;
+    bottom: 0px !important;
     margin-top: 10px;
     height: 25px;
     padding-top:50px;
     padding-bottom:50px;
+    transition-duration: 0.3s, 0.3s;
 }
+
+
 .editform{
     position: relative;
     top:5vh;
 }
-.photo:hover{
+/* .photo:hover{
     transform: scale(5,5) !important;
     z-index: 3;
-}
+} */
 .titre2{
     position: relative;
     top:4vh;
@@ -131,4 +137,17 @@ footer{
 .image1{
     max-width: 250px;
     height: auto;
+}
+.card-text{
+    text-align: justify !important;
+}
+#annonce{
+    position: relative;
+    width: 100%;
+    height: 150%;
+}
+#separateur{
+    position: relative;
+    width: 100%;
+    height: 30vh;
 }

@@ -398,11 +398,7 @@ $("#adresse").autocomplete({
 		});
 	}
 });
-//code jquery pour la table page gestion_membres.php
 
-$(document).ready(function() {
-    $('#membres').DataTable();
-} );
 //code d'update des champs du formulaire 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -443,3 +439,203 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+//Slider du fichier annonce
+$(document).ready(function(){
+    $('#price_range').slider({
+        range:true,
+        min:1,
+        max:3000000,
+        values:[1, 3000000],
+        step:500,
+        stop:function(event, ui)
+        {
+            $('#price_show').html(ui.values[0] + ' - ' + ui.values[1]);
+            $('#hidden_minimum_price').val(ui.values[0]);
+            $('#hidden_maximum_price').val(ui.values[1]);
+            data_filtrer();
+        }
+    });
+});
+//Récupération des données de filtrage
+$(document).ready(function(){
+    data_filtrer();
+
+    function data_filtrer()
+    {
+        $('.data_filtrer').html('<div id="loading" style="" ></div>');
+        var action = 'fetch_data';
+        var minimum_price = $('#hidden_minimum_price').val();
+        var maximum_price = $('#hidden_maximum_price').val();
+        console.log(maximum_price);
+        var categorie = get_filter('categorie');
+        var region = get_filter('region');
+        var divers = get_filter('divers');
+        $.ajax({
+            url:"fetch_data.php",
+            method:"POST",
+            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, categorie:categorie, region:region, divers:divers},
+            success:function(data){
+                $('.data_filtrer').html(data);
+                
+                console.log(maximum_price);
+                console.log(categorie);
+            }
+        });
+    }
+ 
+     function get_filter(class_name)
+    {
+        var filter = [];
+        $('.'+class_name+':checked').each(function(){
+            filter.push($(this).val());
+        });
+        return filter;
+    }
+
+    $('.common_selector').click(function(){
+        data_filtrer();
+    });
+
+
+
+});
+
+
+// //Récupération des données de annonces.json
+// $(document).ready(function () {
+    
+    
+    
+    
+//     $.ajax({
+//         type: "GET",
+//         url: "annonces.json",
+//         datatype: "json",
+//         success: parseData
+//     })
+
+   
+
+    
+    
+
+        
+
+//  // affichage des données du json data avec pagination   
+ 
+//  function parseData(data) {  
+//     console.log(data);
+//     afficher();
+//         let nbAnnonce = 0;
+//         nbAnnonce = (data.length);
+//         nbAnnonceParPage = 4;
+//         let premiere = 0;
+//         let pageCourante = 1;
+//         let pageMax = Math.ceil(nbAnnonce/nbAnnonceParPage);
+        
+       
+//         $('#premiere').click(function (){
+//             premiere=0;
+//              pageCourante=1;
+//              afficher();
+            
+//             })
+//        $('#suivante').click(function (){
+//            if(premiere+nbAnnonceParPage<=nbAnnonce){
+//             premiere+=nbAnnonceParPage;
+//             pageCourante++;
+//             afficher();
+//            }
+//        })
+//        $('#precedente').click(function (){
+//         if(premiere-nbAnnonceParPage>=0){
+//          premiere-=nbAnnonceParPage;
+//          pageCourante--;
+//          afficher();
+//         }
+//         })
+//         $('#derniere').click(function (){
+//         premiere = (pageMax*nbAnnonceParPage)-nbAnnonceParPage;
+//         pageCourante = pageMax;
+//              afficher();
+//             })
+//         function afficher(){
+//         for (let i=0; i<premiere+nbAnnonceParPage; i++) {
+//             console.log(nbAnnonce);
+//             if(i<nbAnnonce){
+//             $("#content").html(
+              
+//         `<div class="card mb-3 border-top border-bottom" style="max-width: 800px;" >
+//                         <div class="row g-0 align-items-center">
+//                             <div class="col-md-4 text-center">
+//                                 <img src="./includes/img/`+data[i].photo+`" class="img-fluid rounded w-100">
+//                             </div>
+//                             <div class="col-md-8">
+//                                 <div class="card-body">
+//                                     <h5 class="card-title fw-bold fs-5">`+data[i].titre+` Région : `+data[i+1].region+`</h5>
+//                                     <p class="card-text">`+data[i].description_courte+data[i].id_annonce+`</p>
+//                                     <p class="card-text"><small class="text-muted fw-bold fs-5">Le prix est de: `+data[i].prix+`<sup>€</sup></small></p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div class="card mb-3 border-top border-bottom" style="max-width: 800px;" >
+//                         <div class="row g-0 align-items-center">
+//                             <div class="col-md-4 text-center">
+//                                 <img src="./includes/img/`+data[i+1].photo+`" class="img-fluid rounded w-100">
+//                             </div>
+//                             <div class="col-md-8">
+//                                 <div class="card-body">
+//                                     <h5 class="card-title fw-bold fs-5">`+data[i+1].titre+` Région : `+data[i+1].region+`</h5>
+//                                     <p class="card-text">`+data[i+1].description_courte+data[i+1].id_annonce+`</p>
+//                                     <p class="card-text"><small class="text-muted fw-bold fs-5">Le prix est de: `+data[i+1].prix+`<sup>€</sup></small></p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div class="card mb-3 border-top border-bottom" style="max-width: 800px;" >
+//                         <div class="row g-0 align-items-center">
+//                             <div class="col-md-4 text-center">
+//                                 <img src="./includes/img/`+data[i+2].photo+`" class="img-fluid rounded w-100">
+//                             </div>
+//                             <div class="col-md-8">
+//                                 <div class="card-body">
+//                                     <h5 class="card-title fw-bold fs-5">`+data[i+2].titre+`  Région : `+data[i+1].region+`</h5>
+//                                     <p class="card-text">`+data[i+2].description_courte+data[i+2].id_annonce+`</p>
+//                                     <p class="card-text"><small class="text-muted fw-bold fs-5">Le prix est de: `+data[i+2].prix+`<sup>€</sup></small></p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     <div class="card mb-3 border-top border-bottom" style="max-width: 800px;" >
+//                         <div class="row g-0 align-items-center">
+//                             <div class="col-md-4 text-center">
+//                                 <img src="./includes/img/`+data[i+3].photo+`" class="img-fluid rounded w-100">
+//                             </div>
+//                             <div class="col-md-8">
+//                                 <div class="card-body">
+//                                     <h5 class="card-title fw-bold fs-5">`+data[i+3].titre+`  Région : `+data[i+1].region+`</h5>
+//                                     <p class="card-text">`+data[i+3].description_courte+data[i+3].id_annonce+`</p>
+//                                     <p class="card-text"><small class="text-muted fw-bold fs-5">Le prix est de: `+data[i+3].prix+`<sup>€</sup></small></p>
+//                                 </div>
+//                             </div>
+//                         </div>
+//                     </div>
+//                     `
+                    
+//                 )
+//             }}
+//                 infoPage();
+//             }
+//             function infoPage(){
+//                 $('#infoPage').html(`
+                
+//                 Page:${pageCourante}/${pageMax}
+                
+//                 `)
+
+//             }   
+
+        
+//     }
+// });

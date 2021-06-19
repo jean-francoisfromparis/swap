@@ -51,11 +51,11 @@ require_once('includes/init.php') ;
             }
             else{
                 // copie physique du fichier
-                $nom_fichier1 ='photo1_'.date('d_m_Y_H_i').trim(pathinfo($_FILES['file1']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file1']['name'],PATHINFO_EXTENSION);
-                $nom_fichier2 ='photo2_'.date('d_m_Y_H_i').trim(pathinfo($_FILES['file2']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file2']['name'],PATHINFO_EXTENSION);
-                $nom_fichier3 ='photo3_'.date('d_m_Y_H_i').trim(pathinfo($_FILES['file3']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file3']['name'],PATHINFO_EXTENSION);
-                $nom_fichier4 ='photo4_'.date('d_m_Y_H_i').trim(pathinfo($_FILES['file4']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file4']['name'],PATHINFO_EXTENSION);
-                $nom_fichier5 ='photo5_'.date('d_m_Y_H_i').trim(pathinfo($_FILES['file5']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file5']['name'],PATHINFO_EXTENSION);
+                $nom_fichier1 ='photo1_'.uniqid().trim(pathinfo($_FILES['file1']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file1']['name'],PATHINFO_EXTENSION);
+                $nom_fichier2 ='photo2_'.uniqid().trim(pathinfo($_FILES['file2']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file2']['name'],PATHINFO_EXTENSION);
+                $nom_fichier3 ='photo3_'.uniqid().trim(pathinfo($_FILES['file3']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file3']['name'],PATHINFO_EXTENSION);
+                $nom_fichier4 ='photo4_'.uniqid().trim(pathinfo($_FILES['file4']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file4']['name'],PATHINFO_EXTENSION);
+                $nom_fichier5 ='photo5_'.uniqid().trim(pathinfo($_FILES['file5']['name'], PATHINFO_FILENAME)). '.'.pathinfo($_FILES['file5']['name'],PATHINFO_EXTENSION);
                 $chemin = $_SERVER['DOCUMENT_ROOT'] . URL . 'includes/img/';
                 move_uploaded_file($_FILES['file1']['tmp_name'], $chemin.$nom_fichier1);
                 move_uploaded_file($_FILES['file2']['tmp_name'], $chemin.$nom_fichier2);
@@ -109,8 +109,8 @@ require_once('includes/init.php') ;
     'categorie_id'       =>   $categorie_id 
         ));
             add_flash("L'annonce a bien été enregistré", 'success');
-            // header('Location:' .URL. 'pageannonce.php');
-            // exit();
+            header('Location:' .URL. 'pageannonce.php');
+            exit();
     }
 
 $categories = sql("SELECT * FROM categorie ORDER BY id_categorie");
@@ -143,7 +143,7 @@ require_once ('includes/haut.php');
                 </div>
                 <div class="mb-2">
                     <label for="description_courte" class="form-label">Description Courte</label>
-                    <textarea type="text" class="form-control w-100" id="description_courte" name="description_courte" required></textarea>
+                    <textarea type="text" class="form-control w-100" id="description_courte" name="description_courte" maxlength="125" required></textarea>
                 </div>
             </div>
             <div class="col">
@@ -212,7 +212,7 @@ require_once ('includes/haut.php');
             <div class="col">
                 <div class="mb-2">
                     <label for="description_longue" class="form-label">Description longue</label>
-                    <textarea type="text" class="form-control w-100" id="description_longue" name="description_longue"  row="3"></textarea>
+                    <textarea type="text" class="form-control w-100" id="description_longue" name="description_longue" maxlength="600" row="3"></textarea>
                 </div>
                 <div class="mb-2">
                     <label for="prix" class="form-label">Prix</label>
