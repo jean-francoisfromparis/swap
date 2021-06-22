@@ -1,5 +1,4 @@
 
-
 // Chargement des photos et preview
 document.addEventListener('DOMContentLoaded', function(){
     if(document.getElementById('photo1')){
@@ -501,6 +500,12 @@ $(document).ready(function(){
 });
 
 
+
+
+
+
+
+
 // //Récupération des données de annonces.json
 // $(document).ready(function () {
     
@@ -639,3 +644,29 @@ $(document).ready(function(){
         
 //     }
 // });
+$('[data-fancybox="preview"]').fancybox({
+    thumbs : {
+      autoStart : true
+    }
+  });
+  $('#mapid').on("click", function() {
+
+    $.fancybox.open({
+      src: "#mapid",
+      type: 'inline', 
+      afterShow : function() {
+  
+        mapboxgl.accessToken = 'pk.eyJ1IjoiY2ljZXJvbiIsImEiOiJja3E1Yzc1MHEwOXQyMm9xb2gycjc1Ym1wIn0.fJ96rmd0A6bixomAUx5ZTQ';
+        var map = new mapboxgl.Map({
+        container: 'mapid',
+        width: 750,
+        height: 500,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [lon,lat],
+        zoom: 13
+        });
+  
+      }
+    });
+  
+  });

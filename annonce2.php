@@ -10,7 +10,7 @@ require_once('includes/haut.php');
 ?>
 <div class="container titre1">
     <div class="row text-center ">
-        <h1>Annonces</h1>
+        <h1 onload="init()">Annonces</h1>
         <hr class="mb-3">
     </div>
 </div>
@@ -72,13 +72,12 @@ require_once('includes/haut.php');
                 <div class="list-group mt-3">
                 <h3>Tris divers</h3>
                         <ul class="list-group list-group-flush " style="height: 180px; overflow-x: hidden;">
-                                            <li class="list-group-item checkbox">
-                                                <label><input type="checkbox" class="common_selector divers" value="1"  >Prix par ordre croissant </label>
-                                                <label><input type="checkbox" class="common_selector divers" value="2"  >Prix par ordre décroissant </label>
-                                                <label><input type="checkbox" class="common_selector divers" value="3"  >Par date croissante</label>
-                                                <label><input type="checkbox" class="common_selector divers" value="4"  >Par date décroissante</label>
-                                            </li>
-                                           
+                            <li class="list-group-item checkbox">
+                                <label><input type="checkbox" class="common_selector divers" value="1"  > Prix par ordre croissant </label>
+                                <label><input type="checkbox" class="common_selector divers" value="2"  > Prix par ordre décroissant </label>
+                                <label><input type="checkbox" class="common_selector divers" value="3"  > Par date croissante</label>
+                                <label><input type="checkbox" class="common_selector divers" value="4"  > Par date décroissante</label>
+                            </li>
                         </ul>
                 </div>  
             
