@@ -1,12 +1,9 @@
-if(document.getElementById("address")){
 let lat = 0;
 let lon = 0;
 var send = $_id("send"),
-
 	    address = $_id("address"),
 	    output = $_id("output");
-        console.log($('#adress').val());
-	
+	send.onclick = function () {
 		output.innerHTML = "";
 		var conf = {
 			singleFieldSearch : address.value
@@ -33,7 +30,7 @@ var send = $_id("send"),
                 center: [lon,lat],
                 zoom: 13
                 });
-                VMLaunch("ViaMichelin.Api.Geocoding", map);
+
 			},
 			onError : displayError,
 			onInitError : displayError
@@ -41,18 +38,3 @@ var send = $_id("send"),
 		VMLaunch("ViaMichelin.Api.Geocoding", conf, callbacks);
         
 	};
-
-    // staticClient.getStaticImage({
-    //     ownerId: 'mapbox',
-    //     styleId: 'streets-v11',
-    //     width: 200,
-    //     height: 300,
-    //     position: {
-    //       coordinates: [2.35111, 48.85682],
-    //       zoom: 14
-    //     }
-    //   })
-    //     .send()
-    //     .then(response => {
-    //       const image = response.html;
-    //     });

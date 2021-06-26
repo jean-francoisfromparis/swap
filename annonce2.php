@@ -42,7 +42,7 @@ require_once('includes/haut.php');
                                             {
                                             ?>
                                             <li class="list-group-item checkbox">
-                                                <label><input type="checkbox" class="common_selector categorie" value="<?php echo $row['id_categorie']; ?>"  > <?php echo $row['titre']; ?></label>
+                                                <label><input type="checkbox" class="common_selector categorie" value="<?php echo $row['id_categorie'] ?>"  > <?php echo $row['titre']; ?></label>
                                             </li>
                                             <?php
                                             }
@@ -80,13 +80,10 @@ require_once('includes/haut.php');
                             </li>
                         </ul>
                 </div>  
-            
-
             </div>
             <div class="col-md-9">
                 <div class="row data_filtrer">
-
-                    
+                
                 </div>
             </div>
         </div>

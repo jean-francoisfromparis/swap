@@ -173,3 +173,8 @@ a {
     color: black !important;
     text-decoration: none;
 }
+/* css de la notation */
+.checked
+{
+    color:orange;
+}

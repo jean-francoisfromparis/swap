@@ -20,15 +20,14 @@
    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
 <script src="https://secure-apijs.viamichelin.com/apijsv2/api/js?key=JSV2GP20210620215654904290831666$165380&lang=fra&protocol=https" type="text/javascript"> </script>
                 <!-- cdn databasetable -->
-<!-- <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script> -->
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/plug-ins/1.10.25/i18n/French.json"></script>
 <script src="<?php echo URL ?>js/jquery.fancybox.min.js"></script>
 <!---JS-->
  
    <script src="<?php echo URL ?>js/swap.js"></script>
-   <script src="<?php echo URL ?>js/gallerie.js"></script>
    <script src="<?php echo URL ?>js/tableau.js"></script>
-   <script src="<?php echo URL ?>js/map.js"></script>
-   <script src="<?php echo URL ?>js/map2.js"></script>
+   <script src="<?php echo URL ?>js/star.js"></script>
    <script src="<?php echo URL ?>js/geocodage.js"></script>
   </body>
 </html>

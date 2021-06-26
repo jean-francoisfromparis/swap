@@ -1,17 +1,17 @@
 <?php
 
 require_once('includes/init.php') ;
-//Traitement de la déconnexion
-// if (!isConnected()) {
-// 	header ('Location:'.URL.'index.php');
-// 	exit();}
+// Traitement de la déconnexion
+if (!isConnected()) {
+	header ('Location:'.URL.'index.php');
+	exit();}
 
     // Traitement du formulaire
     $reqs = sql("SELECT id_photo, photo1 FROM photo");
     $req = $reqs->fetchAll();
     $last_photo =implode(" ", $req[count($req)-1] );
     $lastId_photo=substr(implode(" ", $req[count($req)-1] ) ,0, strpos(implode(" ", $req[count($req)-1] ),' '));
-    // $nom_photo1 = ltrim(stristr( implode(" ", $req[count($req)-1] )  ,' '));
+   
     
     
  
@@ -117,7 +117,7 @@ $categories = sql("SELECT * FROM categorie ORDER BY id_categorie");
     $title= "Déposer une annonce";
 require_once ('includes/haut.php');
 ?>
-<div class="container titre1">
+<div class="container titre1 mt-5">
     <div class="row text-center ">
         <h1>Déposer une annonce</h1>
         <hr class="mb-3">
@@ -130,8 +130,6 @@ require_once ('includes/haut.php');
         </div>
     </div>
 <?php endif; ?>
-
- <span><?php var_dump( gettype($nom_photo1)); ?></span><span><?php var_dump(($nom_photo1)); ?></span>
 
 <div class="container-fluid">
 <form  method="POST" enctype="multipart/form-data">

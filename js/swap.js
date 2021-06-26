@@ -469,10 +469,11 @@ $(document).ready(function(){
         var categorie = get_filter('categorie');
         var region = get_filter('region');
         var divers = get_filter('divers');
+        var divers1 = get_filter('divers1');
         $.ajax({
             url:"fetch_data.php",
             method:"POST",
-            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, categorie:categorie, region:region, divers:divers},
+            data:{action:action, minimum_price:minimum_price, maximum_price:maximum_price, categorie:categorie, region:region, divers:divers, divers1:divers1},
             success:function(data){
                 $('.data_filtrer').html(data);
                 

@@ -6,45 +6,66 @@ $connect = new PDO("mysql:host=localhost;charset=utf8;dbname=swap", "root", "");
 
 //Vérification du fetch de data via le $_POST
 if (isset($_POST['action'])) {
-  $req =
-    "SELECT * FROM `annonce`"; // requête de base
+  
+  $filtreCategorie = '';
+  $filtreRegion    = '';
+  $filtrePrix      = '';
+  $filtreDivers    ='';
+  $filtreDivers1   ='';
+  $filtre          = '';
+  " , date_enregistrement DESC";
 
-  if (isset($_POST["categorie"])) // vérification sélection d'un checkbox pour les catégorie
-  {
-    $filtre_categorie = implode("','", $_POST["categorie"]); // transformation de l'array $_POST en string
-    $req .= " WHERE `categorie_id` IN ('$filtre_categorie');"; // requête de sélection en fonction de la catégorie
+if(isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"]))
+ {
+  $filtrePrix .= "
+   AND prix BETWEEN '".$_POST["minimum_price"]."' AND '".$_POST["maximum_price"]."'
+  ";
+ }
+ if(isset($_POST["categorie"]))
+ {
+  $categorie = implode("','", $_POST["categorie"]);
+  var_dump($categorie);
+  $filtreCategorie .= "
+   AND categorie_id IN('".$categorie."')
+  ";
+ }
+ if(isset($_POST["region"]))
+ {
+  $region = implode("','", $_POST["region"]);
+  var_dump($region);
+  $filtreRegion .= "
+   AND region IN('".$region."')
+  ";
+ }
+if(isset($_POST["divers"]))
+{$divers = implode("','", $_POST["divers"]);
+  switch ($divers) {
+    case 1:
+      $filtreDivers .= " ORDER BY `prix` ASC";     // requêtes de sélection en fonction des tris par ordre
+      break;
+    case 2:
+      $filtreDivers .= " ORDER BY `prix` DESC";
+      break;
+    case 3:
+      $filtreDivers .= " ORDER BY `date_enregistrement` ASC";
+      break;
+    case 4:
+      $filtreDivers .= " ORDER BY `date_enregistrement` DESC";;
+      break;
+}
+}
 
-  }
-  if (isset($_POST["region"])) // vérification sélection d'un checkbox pour les régions
-  {
-    $filtre_region = implode("','", $_POST["region"]);
-    $req .= " AND `region` IN ('$filtre_region')";     // requête de sélection en fonction de la régions
+$annonces = sql("SELECT * FROM annonce WHERE '1' " 
+. $filtreCategorie 
+. $filtreRegion   
+. $filtrePrix     
+. $filtreDivers   
+. $filtreDivers1   
+. $filtre );
+   
 
-  }
-  if (isset($_POST["minimum_price"], $_POST["maximum_price"]) && !empty($_POST["minimum_price"]) && !empty($_POST["maximum_price"])) {
-    $req .= " WHERE `prix` BETWEEN '" . $_POST["minimum_price"] . "' AND '" . $_POST["maximum_price"] . "'"; // requête de sélection en fonction de la gamme de prix
 
-  }
-  if (isset($_POST['divers'])) {
-    $filtre_divers = implode("','", $_POST["divers"]);
-    switch ($filtre_divers) {
-      case 1:
-        $req .= " ORDER BY `prix` ASC";     // requêtes de sélection en fonction des tris par ordre
-        break;
-      case 2:
-        $req .= " ORDER BY `prix` DESC";
-        break;
-      case 3:
-        $req .= " ORDER BY `date_enregistrement` ASC";
-        break;
-      case 4:
-        $req .= " ORDER BY `date_enregistrement` DESC";;
-        break;
-    }
-  }
-
-  $annonces = $connect->prepare($req);
-  $annonces->execute();
+  
 
   //Mise en place de la pagination
   $photo2 = '';
@@ -62,6 +83,7 @@ if (isset($_POST['action'])) {
       $prix_affiche = new \NumberFormatter("fr-FR", \NumberFormatter::CURRENCY);
       $a =  (int) $annonce['prix'];
       $prix_affiche->formatCurrency($a, "EUR");
+      $date=date('d/m/Y', strtotime($annonce['date_enregistrement']));
       $photo = $annonce['photo'] ?: 'placeholder-350x350.png';
       $photo2 = '' ?: 'placeholder-350x350.png';
       $photo3 = '' ?: 'placeholder-350x350.png';
@@ -78,9 +100,9 @@ if (isset($_POST['action'])) {
         <div class="col-md-8">
           <div class="card-body">
           <a href="./fiche_annonce.php?id=$annonce[id_annonce]">
-            <h5 class="card-title fw-bold fs-4">$annonce[titre]</h5>
+            <h5 class="card-title fw-bold fs-4">$annonce[titre] /$annonce[id_annonce] </h5>
             <p class="card-text">$annonce[description_courte]</p>
-            <p class="card-text"><small class="text-muted fs-5">$a € </small></p>
+            <p class="card-text"><small class="text-muted fs-5">$a € </small><br>Annonce publiée : le $date </p>
             </a>
           </div>
         </div>
