@@ -10,3 +10,14 @@ $(document).ready(function() {
         }
     } );
 } );
+$(document).ready(function() {
+    $('#tableau3').DataTable( {
+        
+        
+        language: {
+            url: 'http://cdn.datatables.net/plug-ins/1.10.25/i18n/French.json',
+        },
+       
+    } );
+} );
+console.log(`hello`);

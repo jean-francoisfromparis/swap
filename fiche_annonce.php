@@ -3,19 +3,6 @@
 require_once('includes/init.php');
 // traitement du formaulaire de commentaire en méthode post
 
-// $note=0;
-// $commentaire='';
-
-
-
-
-
-
-
-
-
-
-
 
 $data = ('');
 
@@ -73,7 +60,7 @@ require_once('includes/haut.php');
     <hr class="mb-3">
   </div>
 
-  <div class="container-fluid px-5 mt-2" onload="init()">
+  <div class="container-fluid px-5 mt-2">
     <div class="row g-3 justify-content-center">
       <div class="col-sm-10">
         <div class="row g-3 align-items-center">
@@ -134,6 +121,7 @@ require_once('includes/haut.php');
             </div>
           </div>
         </div>
+
         <div class="row justify-content-center text-start ms-1 mt-2 align-items-center">
 
           <div class="col-3 fs-5">

@@ -152,9 +152,7 @@ require_once ('includes/haut.php');
                             <!-- <label>Image actuelle</label> -->
                             <div id="photo1" class="position-relative photo" name="photo1">
                                 <img src="./photo/placeholder/placeholder-350x350.png" class="img-fluid w-50">
-                                <?php if(defined('BLOGHEADER')) : ?>
                                     <a href="?action=supimg" class="bg-light px-2 border"><i class="fa fa-times"></i></a>
-                                <?php endif; ?>
                             </div>
                         </div> 
 
@@ -164,9 +162,7 @@ require_once ('includes/haut.php');
                             <!-- <label>Image actuelle</label> -->
                             <div id="photo2" class="position-relative photo" name="photo2">
                                 <img src="./photo/placeholder/placeholder-350x350.png" class="img-fluid w-50">
-                                <?php if(defined('BLOGHEADER')) : ?>
                                     <a href="?action=supimg" class="bg-light px-2 border"><i class="fa fa-times"></i></a>
-                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -176,9 +172,7 @@ require_once ('includes/haut.php');
                             <!-- <label>Image actuelle</label> -->
                             <div id="photo3" name="photo3" class="position-relative photo">
                                 <img src="./photo/placeholder/placeholder-350x350.png" class="img-fluid w-50">
-                                <?php if(defined('BLOGHEADER')) : ?>
                                     <a href="?action=supimg" class="bg-light px-2 border"><i class="fa fa-times"></i></a>
-                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -188,9 +182,7 @@ require_once ('includes/haut.php');
                             <!-- <label>Image actuelle</label> -->
                             <div id="photo4" name="photo4" class="position-relative photo">
                                 <img src="./photo/placeholder/placeholder-350x350.png" class="img-fluid w-50">
-                                <?php if(defined('BLOGHEADER')) : ?>
                                     <a href="?action=supimg" class="bg-light px-2 border"><i class="fa fa-times"></i></a>
-                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -200,9 +192,7 @@ require_once ('includes/haut.php');
                             <!-- <label>Image actuelle</label> -->
                             <div id="photo5" name="photo5" class="position-relative photo" >
                                 <img src="./photo/placeholder/placeholder-350x350.png" class="img-fluid w-50">
-                                <?php if(defined('BLOGHEADER')) : ?>
                                     <a href="?action=supimg" class="bg-light px-2 border"><i class="fa fa-times"></i></a>
-                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
@@ -210,7 +200,7 @@ require_once ('includes/haut.php');
             <div class="col">
                 <div class="mb-2">
                     <label for="description_longue" class="form-label">Description longue</label>
-                    <textarea type="text" class="form-control w-100" id="description_longue" name="description_longue" maxlength="600" row="3"></textarea>
+                    <textarea type="text" class="form-control w-100" id="description_longue" name="description_longue" maxlength="600" rows="3"></textarea>
                 </div>
                 <div class="mb-2">
                     <label for="prix" class="form-label">Prix</label>

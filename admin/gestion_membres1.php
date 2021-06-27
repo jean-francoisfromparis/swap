@@ -32,13 +32,13 @@ require_once('../includes/haut.php');
             </div>
         </div>
     <?php endif; ?>
-   
+
     <div class="row text-center">
         <h1 class="mt-2">Gestion des Membres</h1>
         <hr class="mb-2">
     </div>
     <?php var_dump($_POST) ?>
-    <div >
+    <div>
         <table class="table-responsive-lg shadow-sm text-center table-hover" id="membres">
             <thead class="text-center">
                 <th style="width:3rem">id</th>
@@ -93,32 +93,32 @@ require_once('../includes/haut.php');
 <form method="POST" action="gestion_membres.php" class="container-fluid">
     <div class="row row-cols-1 row-cols-md-2 recherchebar border rounded P-2 m-2">
         <div class="col-lg-1 py-2">
-        
+
             <label for="rechercheParId" class="form-label">par ID</label>
             <input class="form-control " list="datalistId" id="rechercheParId" name="rechercheParId">
             <datalist id="datalistId">
-            <?php if ($suggestions->rowCount() > 0) : ?>
-                <?php while ($suggestion = $suggestions->fetch()) : ?>
-                    <option value="<?php echo $suggestion['id_membre'] ?>">
-                <?php endwhile; ?>
-            <?php endif; ?> 
+                <?php if ($suggestions->rowCount() > 0) : ?>
+                    <?php while ($suggestion = $suggestions->fetch()) : ?>
+                        <option value="<?php echo $suggestion['id_membre'] ?>">
+                        <?php endwhile; ?>
+                    <?php endif; ?>
             </datalist>
         </div>
         <div class="col-lg-3 py-2">
-        <?php if ($membres1->rowCount() > 0) : ?>
-            <label for="rechercheParPseudo" class="form-label">par Pseudo</label>
-            <input class="form-control" list="datalistPseudo" id="rechercheParPseudo" name="rechercheParPseudo" placeholder="">
+            <?php if ($membres1->rowCount() > 0) : ?>
+                <label for="rechercheParPseudo" class="form-label">par Pseudo</label>
+                <input class="form-control" list="datalistPseudo" id="rechercheParPseudo" name="rechercheParPseudo" placeholder="">
                 <datalist id="datalistPseudo">
                     <?php while ($membre1 = $membres1->fetch()) : ?>
-                     <?php echo(' <option  value="'.$membre1['pseudo'].'">')?>
-               
-                        <?php endwhile; ?>
-                         <?php endif; ?>      
+                        <?php echo (' <option  value="' . $membre1['pseudo'] . '">') ?>
+
+                    <?php endwhile; ?>
+                <?php endif; ?>
                 </datalist>
-                
+
         </div>
         <button type="submit" class="btn btn-sm btn-primary w-25" id="submit"></button>
-        
+
     </div>
 </form>
 
@@ -128,11 +128,11 @@ require_once('../includes/haut.php');
             <label for="pseudo" class="form-label">Pseudo</label>
             <input type="text" class="form-control w-50" name="pseudo">
             <label for="nouveauMdp" class="form-label">Nouveau Mot de passe</label>
-            <input type="password" class="form-control w-50" name="nouveauMdp" minlength="8"  maxlength="20">
+            <input type="password" class="form-control w-50" name="nouveauMdp" minlength="8" maxlength="20">
         </div>
         <div class="col">
             <label for="nouveauEmail" class="form-label">Nouvel Email</label>
-            <input type="email" class="form-control w-50" name="nouveauEmail" >
+            <input type="email" class="form-control w-50" name="nouveauEmail">
             <label for="nouveauTele" class="form-label">Nouveau # de Téléphone</label>
             <input type="text" class="form-control w-50" name="nouveauTele" minlength="10" maxlength="10">
         </div>
@@ -140,7 +140,7 @@ require_once('../includes/haut.php');
             <label for="nom" class="form-label">Nom</label>
             <input type="text" class="form-control w-50" name="nom">
             <label for="prenom" class="form-label">Prenom</label>
-            <input type="text" class="form-control w-50" name="prenom" value="<?php echo($membre['id_membre'])  ?>">
+            <input type="text" class="form-control w-50" name="prenom" value="<?php echo ($membre['id_membre'])  ?>">
         </div>
         <div class="col">
             <div class="form-check mt-4">
