@@ -11,8 +11,12 @@ $(document).ready(function() {
     } );
 } );
 $(document).ready(function() {
-    $('#tableau3').DataTable( {
-        
+    $('#membres').DataTable( {
+        "paging":  true,
+        "ordering":true,
+        "info":    true,
+        "pagingType": "simple",
+        "order": [[ 3, "desc" ]],
         
         language: {
             url: 'http://cdn.datatables.net/plug-ins/1.10.25/i18n/French.json',

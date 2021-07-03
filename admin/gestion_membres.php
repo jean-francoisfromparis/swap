@@ -103,7 +103,7 @@ require_once('../includes/haut.php');
         <hr class="mb-2">
     </div>
 
-    <div class="table-responsive-lg ">
+    <div class="table-responsive-md ">
         <table id="tableau1" class="table table-striped text-center table-hover">
             <thead class="text-center">
                 <tr>

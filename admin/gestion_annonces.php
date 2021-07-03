@@ -12,12 +12,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && !empty($_GET['id'])
         'id' => $_GET['id']
     ));
     add_flash("👍 L'annonce a été supprimée", 'success');
-    header('location: gestion_annonces.php');
+    header('location: admin/gestion_annonces.php');
     exit();
 }
 
 
-$record_per_page = 6;
+$record_per_page = 4;
 $page = '';
 if (isset($_GET["page"])) {
     $page = $_GET["page"];
@@ -35,6 +35,10 @@ $title = "Gestion des Annonces";
 require_once('../includes/haut.php');
 ?>
 <div class="container-fluid titre1 " style="width:100vw">
+    <div class="row text-center">
+        <h1 class="mt-2">Gestion des Annonces</h1>
+        <hr class="mb-2">
+    </div>
     <?php if (!empty(show_flash())) : ?>
         <div class="row justify-content-center">
             <div class="col">
@@ -43,17 +47,11 @@ require_once('../includes/haut.php');
         </div>
     <?php endif; ?>
 
-    <div class="row text-center">
-        <h1 class="mt-2">Gestion des Annonces</h1>
-        <hr class="mb-2">
-    </div>
-
-
     <div class="table">
-        <table class="table table-striped text-center align-middle">
+        <table class="table table-striped text-annonce align-middle">
             <thead>
                 <tr>
-                    <th><?= ucfirst('id_annonce')         ?></th>
+                    <th><?= ucfirst('id')         ?></th>
                     <th><?= ucfirst('titre')              ?></th>
                     <th><?= ucfirst('description courte') ?></th>
                     <th><?= ucfirst('description longue') ?></th>
@@ -63,9 +61,9 @@ require_once('../includes/haut.php');
                     <th><?= ucfirst('ville')              ?></th>
                     <th><?= ucfirst('adresse')            ?></th>
                     <th><?= ucfirst('code postal')        ?></th>
-                    <th><?= ucfirst('membre_id')          ?></th>
-                    <th><?= ucfirst('categorie_id')       ?></th>
-                    <th><?= ucfirst('date_enregistrement')?></th>
+                    <th><?= ucfirst('membre')          ?></th>
+                    <th><?= ucfirst('categorie')       ?></th>
+                    <th><?= ucfirst('date enregistrement')?></th>
                     <th><?= ucfirst('Supprimer')?></th>
                     <th><?= ucfirst('Modifier')?></th>
                 </tr>
@@ -74,7 +72,7 @@ require_once('../includes/haut.php');
                 <!-- injection des données des tables annonce membre et categorie -->
                 <?php if ($annonces->rowCount() > 0) : ?>
                     <?php while ($annonce = $annonces->fetch()) : ?>
-                        <?php $membres  = sql("SELECT `id_membre`,`pseudo` FROM `membre` WHERE id_membre = $annonce[membre_id] "); ?>
+                        <?php $membres  = sql("SELECT `id_membre`,`pseudo` FROM `membre` WHERE id_membre = $annonce[membre_id]"); ?>
                         <?php if ($membres->rowCount() > 0) : ?>
                             <?php while ($membre = $membres->fetch()) : ?>
                                 <?php $categories  = sql("SELECT `id_categorie`, `titre` FROM `categorie` WHERE id_categorie = $annonce[categorie_id]"); ?>
@@ -84,7 +82,7 @@ require_once('../includes/haut.php');
                                             <td><span><?= $annonce['id_annonce'] ?></span></td>
                                             <td><span><?= $annonce['titre'] ?></span></td>
                                             <td class="text-break" style="width:150px;"><span><?= $annonce['description_courte'] ?></span></td>
-                                            <td class="text-break" style="width:150px;"><span><?= $annonce['description_longue'] ?></span></td>
+                                            <td class="" style="width:500px;"><span><?= $annonce['description_longue'] ?></span></td>
                                             <td><span><?= $annonce['prix'] ?></span></td>
                                             <td><span><img src="../includes/img/<?= $annonce['photo'] ?>" class="img-fluid rounded img-thumbnail image1" alt="$annonce[photo]"></span></td>
                                             <td><span><?= $annonce['region'] ?></span></td>
@@ -108,12 +106,12 @@ require_once('../includes/haut.php');
     </div>
 </div>
 <div>
+<!-- Pagination  -->
     <?php
     $page_query = "SELECT * FROM annonce ORDER BY id_annonce DESC";
     $page_result = sql($page_query);
     $total_records = $page_result->rowCount();
     $total_pages = ceil($total_records / $record_per_page);
-    var_dump($total_pages);
     $start_loop = $page;
     $difference = $total_pages - $page;
     if ($difference <= 5) {
@@ -123,7 +121,7 @@ require_once('../includes/haut.php');
     if ($page >= 1) {
         echo "<nav aria-label='Page navigation example mt-5'>";
         echo "<ul class='pagination'>";
-        echo "<li class='page-item'><a class='page-link' href='gestion_annonces.php?page=1'>First</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='gestion_annonces.php?page=1'>1<sup>ère<sup></a></li>";
         echo "<li class='page-item'><a class='page-link' href='gestion_annonces.php?page=" . ($page - 1) . "'><<</a></li>";
     }
     for ($i = $start_loop; $i <= $end_loop; $i++) {
@@ -131,20 +129,13 @@ require_once('../includes/haut.php');
     }
     if ($page <= $total_pages) {
         echo "<li class='page-item'><a class='page-link' href='gestion_annonces.php?page=" . ($page + 1) . "'>>></a></li>";
-        echo "<li class='page-item'><a class='page-link' href='gestion_annonces.php?page=" . $total_pages . "'>Last</a></li>";
+        echo "<li class='page-item'><a class='page-link' href='gestion_annonces.php?page=" . $total_pages . "'>Fin</a></li>";
         echo "</ul>";
         echo "</nav>";
     }
 
 
     ?>
-
-
-
-
-
-
-
 
     <?php
     require_once('../includes/footer.php');

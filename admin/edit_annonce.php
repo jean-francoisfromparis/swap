@@ -19,173 +19,168 @@ endif;
 // traitement du formulaire de modification
 if (!empty($_POST)) {
     $errors = 0;
-    if(!empty($_FILES['annonce']['name']) && $_FILES['annonce']['error'] == 0){
-    // traitement update images et suppression ancien fichier
-    $ext_autorisees = array('image/jpeg', 'image/jpg','image/png');
-    if ((!in_array($_FILES['file1']['type'], $ext_autorisees)) && (!in_array($_FILES['file2']['type'], $ext_autorisees)) && (!in_array($_FILES['file3']['type'], $ext_autorisees)) && (!in_array($_FILES['file4']['type'], $ext_autorisees)) && (!in_array($_FILES['file5']['type'], $ext_autorisees))) {
-        $errors++;
-        add_flash('&#9888; Seules les images JPEG et PNG sont autorisées', 'danger');
-    } else {
-        // copie physique du fichier
+    if (!empty($_FILES)) {
 
-        $photoExsitants = sql("SELECT * FROM `photo` WHERE `id_photo` = $annonce[photo_id]");
-        $photo = $photoExsitants->fetch();
-        $chemin = $_SERVER['DOCUMENT_ROOT'] . URL . 'includes/img/';
+        // traitement update images et suppression ancien fichier
+        $ext_autorisees = array('image/jpeg', 'image/jpg', 'image/png');
+        if ((!in_array($_FILES['file1']['type'], $ext_autorisees)) && (!in_array($_FILES['file2']['type'], $ext_autorisees)) && (!in_array($_FILES['file3']['type'], $ext_autorisees)) && (!in_array($_FILES['file4']['type'], $ext_autorisees)) && (!in_array($_FILES['file5']['type'], $ext_autorisees))) {
+            $errors++;
+            add_flash('&#9888; Seules les images JPEG et PNG sont autorisées', 'danger');
+        } else {
+            // copie physique du fichier
 
-        if ($_FILES['file1']['name']) {
-            $errors = 0;
-            $nom_fichier1 = 'photo1_' . uniqid() . trim(pathinfo($_FILES['file1']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file1']['name'], PATHINFO_EXTENSION);
-            move_uploaded_file($_FILES['file1']['tmp_name'], $chemin . $nom_fichier1);
-            $nom_photo1 = $nom_fichier1;
+            $photoExsitants = sql("SELECT * FROM `photo` WHERE `id_photo` = $annonce[photo_id]");
+            $photo = $photoExsitants->fetch();
+            $chemin = $_SERVER['DOCUMENT_ROOT'] . URL . 'includes/img/';
 
-            if ($photo['photo1'] == 0) {
+            if (!empty($_FILES['file1']['name'])) {
+                $errors = 0;
+                $nom_photo1 = 'photo1_' . uniqid() . trim(pathinfo($_FILES['file1']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file1']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($_FILES['file1']['tmp_name'], $chemin . $nom_photo1);
 
-                sql("UPDATE `photo` SET`photo1`=:photo1 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo1' => $nom_photo1
-                ));
-                sql("UPDATE `annonce` SET`photo`=:photo WHERE `id_annonce` = $annonce[id_annonce]", array(
-                    'photo' => $nom_photo1
-                ));
+                if ($photo['photo1'] == 0) {
 
-            } else {
-                if ($nom_photo1 != $photo['photo1'] && file_exists($chemin . $photo['photo1'])) {
-                    unlink($chemin . $nom_photo1);
+                    sql("UPDATE `photo` SET`photo1`=:photo1 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo1' => $nom_photo1
+                    ));
+                    sql("UPDATE `annonce` SET`photo`=:photo WHERE `id_annonce` = $annonce[id_annonce]", array(
+                        'photo' => $nom_photo1
+                    ));
+                } else {
+                    if ($nom_photo1 != $photo['photo1'] && file_exists($chemin . $photo['photo1'])) {
+                        unlink($chemin . $photo['photo1']);
+                    }
+                    sql("UPDATE `photo` SET`photo1`=:photo1 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo1' => $nom_photo1
+                    ));
                 }
-                sql("UPDATE `photo` SET`photo1`=:photo1 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo1' => $nom_photo1
-                ));
+            }
+            if ($_FILES['file2']['name']) {
+                $errors = 0;
+                $nom_photo2 = 'photo2_' . uniqid() . trim(pathinfo($_FILES['file2']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file2']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($_FILES['file2']['tmp_name'], $chemin . $nom_photo2);
+
+                if ($photo['photo2'] == 0) {
+
+                    sql("UPDATE `photo` SET`photo2`=:photo2 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo2' => $nom_photo2
+                    ));
+                } else {
+                    if ($nom_photo2 != $photo['photo2'] && file_exists($chemin . $photo['photo2'])) {
+                        unlink($chemin . $photo['photo2']);
+                    }
+                    sql("UPDATE `photo` SET`photo2`=:photo2 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo2' => $nom_photo2
+                    ));
+                }
+            }
+            if ($_FILES['file3']['name']) {
+                $errors = 0;
+                $nom_photo3 = 'photo3_' . uniqid() . trim(pathinfo($_FILES['file3']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file3']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($_FILES['file3']['tmp_name'], $chemin .  $nom_photo3);
+
+
+                if ($photo['photo3'] == 0) {
+
+                    sql("UPDATE `photo` SET`photo3`=:photo3 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo3' => $nom_photo3
+                    ));
+                } else {
+                    if ($nom_photo3 != $photo['photo3'] && file_exists($chemin . $photo['photo3'])) {
+                        unlink($chemin . $photo['photo3']);
+                    }
+                    sql("UPDATE `photo` SET`photo1`=:photo1 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo3' => $nom_photo3
+                    ));
+                }
+            }
+            if ($_FILES['file4']['name']) {
+                $errors = 0;
+                $nom_photo4 = 'photo4_' . uniqid() . trim(pathinfo($_FILES['file4']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file4']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($_FILES['file4']['tmp_name'], $chemin .  $nom_photo4);
+
+                if ($photo['photo4'] == 0) {
+
+                    sql("UPDATE `photo` SET`photo4`=:photo4 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo4' => $nom_photo4
+                    ));
+                } else {
+                    if ($nom_photo4 != $photo['photo4'] && file_exists($chemin . $photo['photo4'])) {
+                        unlink($chemin . $photo['photo4']);
+                    }
+                    sql("UPDATE `photo` SET`photo4`=:photo4 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo4' => $nom_photo4
+                    ));
+                }
+            }
+            if ($_FILES['file5']['name']) {
+                $errors = 0;
+                $nom_photo5 = 'photo5_' . uniqid() . trim(pathinfo($_FILES['file5']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file5']['name'], PATHINFO_EXTENSION);
+                move_uploaded_file($_FILES['file5']['tmp_name'], $chemin . $nom_photo5);
+
+                if ($photo['photo5'] == 0) {
+
+                    sql("UPDATE `photo` SET`photo5`=:photo5 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo5' => $nom_photo5
+                    ));
+                } else {
+                    if ($nom_photo5 != $photo['photo5'] && file_exists($chemin . $photo['photo5'])) {
+                        unlink($chemin . $photo['photo5']);
+                    }
+                    sql("UPDATE `photo` SET`photo5`=:photo5 WHERE `id_photo` = $annonce[photo_id]", array(
+                        'photo5' => $nom_photo5
+                    ));
+                }
             }
         }
-        if ($_FILES['file2']['name']) {
-            $errors = 0;
-            $nom_fichier2 = 'photo2_' . uniqid() . trim(pathinfo($_FILES['file2']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file2']['name'], PATHINFO_EXTENSION);
-            move_uploaded_file($_FILES['file2']['tmp_name'], $chemin . $nom_fichier2);
-            $nom_photo2 = $nom_fichier2;
-            if ($photo['photo2'] == 0) {
-
-                sql("UPDATE `photo` SET`photo2`=:photo2 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo2' => $nom_photo2
-                ));
-            } else {
-                if ($nom_photo2 != $photo['photo2'] && file_exists($chemin . $photo['photo2'])) {
-                    unlink($chemin . $nom_photo2);
-                }
-                sql("UPDATE `photo` SET`photo2`=:photo2 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo2' => $nom_photo2
-                ));
-            }
-        }
-        if ($_FILES['file3']['name']) {
-            $errors = 0;
-            $nom_fichier3 = 'photo3_' . uniqid() . trim(pathinfo($_FILES['file3']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file3']['name'], PATHINFO_EXTENSION);
-            move_uploaded_file($_FILES['file3']['tmp_name'], $chemin . $nom_fichier3);
-            $nom_photo3 = $nom_fichier3;
-
-            if ($photo['photo3'] == 0) {
-
-                sql("UPDATE `photo` SET`photo3`=:photo3 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo3' => $nom_photo3
-                ));
-            } else {
-                if ($nom_photo3 != $photo['photo3'] && file_exists($chemin . $photo['photo3'])) {
-                    unlink($chemin . $nom_photo3);
-                }
-                sql("UPDATE `photo` SET`photo1`=:photo1 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo3' => $nom_photo3
-                ));
-            }
-
-        }
-        if ($_FILES['file4']['name']) {
-            $errors = 0;
-            $nom_fichier4 = 'photo4_' . uniqid() . trim(pathinfo($_FILES['file4']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file4']['name'], PATHINFO_EXTENSION);
-            move_uploaded_file($_FILES['file4']['tmp_name'], $chemin . $nom_fichier4);
-            $nom_photo4 = $nom_fichier4;
-
-            if ($photo['photo4'] == 0) {
-
-                sql("UPDATE `photo` SET`photo4`=:photo4 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo4' => $nom_photo4
-                ));
-            } else {
-                if ($nom_photo4 != $photo['photo4'] && file_exists($chemin . $photo['photo4'])) {
-                    unlink($chemin . $nom_photo4);
-                }
-                sql("UPDATE `photo` SET`photo4`=:photo4 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo4' => $nom_photo4
-                ));
-            }
-
-
-        }
-        if ($_FILES['file5']['name']) {
-            $errors = 0;
-            $nom_fichier5 = 'photo5_' . uniqid() . trim(pathinfo($_FILES['file5']['name'], PATHINFO_FILENAME)) . '.' . pathinfo($_FILES['file5']['name'], PATHINFO_EXTENSION);
-            move_uploaded_file($_FILES['file5']['tmp_name'], $chemin . $nom_fichier5);
-            $nom_photo5 = $nom_fichier5;
-
-            if ($photo['photo5'] == 0) {
-
-                sql("UPDATE `photo` SET`photo5`=:photo5 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo5' => $nom_photo5
-                ));
-            } else {
-                if ($nom_photo5 != $photo['photo5'] && file_exists($chemin . $photo['photo5'])) {
-                    unlink($chemin . $nom_photo5);
-                }
-                sql("UPDATE `photo` SET`photo5`=:photo5 WHERE `id_photo` = $annonce[photo_id]", array(
-                    'photo5' => $nom_photo5
-                ));
-            }
-
-
-        }
-    }}
+    }
     //traitement update autres champs
 
-    if($_POST['titre']){
+    if ($_POST['titre']) {
         $titre  = valid_donnees($_POST['titre']);
         sql("UPDATE `annonce` SET`titre`=:titre WHERE `id_annonce` = $annonce[id_annonce]", array(
             'titre' => $titre
         ));
     }
-    if($_POST['description_courte']){
+    if ($_POST['description_courte']) {
         $description_courte = valid_donnees($_POST['description_courte']);
         sql("UPDATE `annonce` SET`description_courte`=:description_courte WHERE `id_annonce` = $annonce[id_annonce]", array(
             'description_courte' => $description_courte
         ));
     }
-    if($_POST['description_longue']){
+    if ($_POST['description_longue']) {
         $description_longue = valid_donnees($_POST['description_longue']);
         sql("UPDATE `annonce` SET`description_longue`=:description_longue WHERE `id_annonce` = $annonce[id_annonce]", array(
             'description_longue' => $description_longue
         ));
     }
-    if($_POST['prix']){
+    if ($_POST['prix']) {
         $prix = valid_donnees($_POST['prix']);
         sql("UPDATE `annonce` SET`prix`=:prix WHERE `id_annonce` = $annonce[id_annonce]", array(
             'prix' => $prix
         ));
     }
-    if($_POST['ville']){
+    if ($_POST['ville']) {
         $ville = valid_donnees($_POST['ville']);
         sql("UPDATE `annonce` SET`ville`=:ville WHERE `id_annonce` = $annonce[id_annonce]", array(
             'ville' => $ville
         ));
     }
-    if($_POST['cp']){
+    if ($_POST['cp']) {
         $cp = valid_donnees($_POST['cp']);
         sql("UPDATE `annonce` SET `cp`=:cp WHERE `id_annonce` = $annonce[id_annonce]", array(
             'cp' => $cp
         ));
     }
-    if($_POST['adresse']){
+    if ($_POST['adresse']) {
         $adresse = valid_donnees($_POST['adresse']);
         sql("UPDATE `annonce` SET `adresse`=:adresse WHERE `id_annonce` = $annonce[id_annonce]", array(
             'adresse' => $adresse
         ));
     }
-
+    add_flash('👍 modification réussie', 'info');
+    header('location:' . URL . 'admin/gestion_annonces.php');
+    exit();
 }
 
 // var_dump($_FILES);
@@ -223,18 +218,19 @@ if (isset($_GET) && is_numeric($_GET['id'])) :
     $photo = $photos->fetch();
 ?>
     <div class="container-fluid titre1 " style="width:100vw">
-        <?php if (!empty(show_flash())) : ?>
-            <div class="row justify-content-center">
-                <div class="col">
-                    <?= show_flash('reset'); ?>
-                </div>
-            </div>
-        <?php endif; ?>
+
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="row text-center">
+            <div class="row text-center mt-5">
                 <h1 class="">Modification de l'annonce N°<?= $id_annonce ?> publiée par <?= $membre['pseudo'] ?? ' Pseudo' ?></h1>
                 <hr class="mb-2">
             </div>
+            <?php if (!empty(show_flash())) : ?>
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <?= show_flash('reset'); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
             <div class="row justify-content-end">
                 <button type="submit" class="btn btn-primary col-md-2">Valider la modification</button>
             </div>

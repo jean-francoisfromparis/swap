@@ -49,7 +49,7 @@ function show_flash($option=null): string
     $messages = '';
     if(isset($_SESSION['messages'])) {
         foreach(array_keys($_SESSION['messages']) as $keyName) {
-            $messages .= '<div class="alert alert-dismissible fade show alert-' . $keyName . '" role="alert">' . implode('<br>', $_SESSION['messages'][$keyName]) . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+            $messages .= '<div class="alert fade disparition alert-dismissible show alert-' . $keyName . '" role="alert">' . implode('<br>', $_SESSION['messages'][$keyName]) . '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
         }
     }
     if($option == 'reset') {

@@ -1,3 +1,13 @@
+//Disparition auto des alertes
+function messageOff()
+{
+    if( document.querySelector('.disparition')){
+    setTimeout(
+        function(){
+            document.querySelector('.disparition').style.display ="none"; 
+        },1000
+    )}
+}
 
 // Chargement des photos et preview
 document.addEventListener('DOMContentLoaded', function(){

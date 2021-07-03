@@ -72,7 +72,7 @@ if (!empty($_POST)){
         $pattern1 = '#^(0|\+33)[1-9]( *[0-9]{2}){4}$#';
         if (!preg_match($pattern1,$_POST['telephone'])){
             $errors++;
-            add_flash('&#9888; Le numéro de téléphone doit être composé de 8 chiffres', 'danger');
+            add_flash('&#9888; Le numéro de téléphone doit être composé de 10 chiffres', 'danger');
         }  
     }
     if(empty($_POST['email'])){
@@ -86,7 +86,7 @@ if (!empty($_POST)){
     }
     }
 
-    if(empty($_POST['civilite1']) && empty($_POST['civilite2']) ){
+    if(empty($_POST['civilite']) ){
         $errors++;
         add_flash('&#9888; Merci de valider au moins une civilité', 'danger');
     }
@@ -97,6 +97,8 @@ if (!empty($_POST)){
         $nom            = valid_donnees($_POST['nom']);
         $prenom         = valid_donnees($_POST['prenom']);
         $telephone      = valid_donnees($_POST['telephone']);
+        $email          = valid_donnees($_POST['email']);
+        $civilite       = valid_donnees($_POST['civilite']);
 
         sql("INSERT INTO membre VALUES (NULL, :pseudo, :mdp, :nom, :prenom, :telephone, :email, :civilite, 0, NOW())", array(
             'pseudo'    => $pseudo,
@@ -104,8 +106,8 @@ if (!empty($_POST)){
             'nom'       => $nom,
             'prenom'    => $prenom,
             'telephone' => $telephone,
-            'email'     => $_POST['email'],
-            'civilite'  => $_POST['civilite1'] || $_POST['civilite2']
+            'email'     => $email,
+            'civilite'  => $civilite 
 
         ));
         add_flash(' 👍 Inscription réussie, vous pouvez vous connecter', 'success');
@@ -257,13 +259,13 @@ require_once ('includes/haut.php');
                             </div>
                             <div class="col-6">
                                 <div class="form-check mb-3 mt-4 ms-5 g-1 p-2">
-                                    <input class="form-check-input" type="radio" name="civilite1" id="civilite1" value="m">
+                                    <input class="form-check-input" type="radio" name="civilite" id="civilite1" value="m">
                                     <label class="form-check-label" for="civilite1">
                                         Homme
                                     </label>
                                 </div>
                                 <div class="form-check  mb-3 mt-2 ms-5 g-1 p-2">
-                                    <input class="form-check-input" type="radio" name="civilite2" id="civilite2" value="f">
+                                    <input class="form-check-input" type="radio" name="civilite" id="civilite2" value="f">
                                     <label class="form-check-label" for="civilite2">
                                         Femme
                                     </label>

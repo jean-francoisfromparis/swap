@@ -18,7 +18,6 @@ main{
     width: 100vw;
     top: 8vh;
     height: 1500px;
-    
 }
 
 .effet:hover{
@@ -35,7 +34,9 @@ main{
     width:100vw; 
     height:auto;
 }
-
+.disparition{
+    z-index: 1000;
+}
 .card{
     border:none;
     position: relative;

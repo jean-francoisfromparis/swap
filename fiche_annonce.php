@@ -50,14 +50,21 @@ require_once('includes/haut.php');
 
 
 
-  <div class="row titre1 mt-3">
-    <h2 class="col-8"> Fiche Annonce : <?= $categorie["titre"]  ?>/<?= $annonce['id_annonce'] ?></h2>
-    <div class="col-4 text-center">
-      <button type="submit" class="btn btn-primary col-md-4" data-bs-toggle="modal" data-bs-target="#modalEmail" data-bs-whatever="<?= $membre['email'] ?? '' ?>" id="contacter" name="contacter">Contacter :&nbsp; <?= $membre['pseudo'] ?? '' ?>
-      </button>
-    </div>
+  <div class="container-fluid titre1 mt-5 justify-content-center">
+  <div class="row">
+  <h2 class="col-md-6"> Fiche Annonce : <?= $categorie["titre"]  ?>/<?= $annonce['id_annonce'] ?></h2>
+  </div>
+    <div class="row mt-4">
+      <div class="col-md-3 text-center">
+        <button type="submit" class="btn btn-primary col-md-8" data-bs-toggle="modal" data-bs-target="#modalEmail" data-bs-whatever="<?= $membre['email'] ?? '' ?>" id="contacter" name="contacter">Contacter :&nbsp; <?= $membre['pseudo'] ?? '' ?>
+        </button>
+      </div>
+      <div class="col-md-3">
+        <a type="submit" href="./annonce2.php" class="btn btn-primary col-md-8 text-white" name="contacter">Retourner sur la page annonce</a>
+      </div>
 
-    <hr class="mb-3">
+      <hr class="mb-2">
+    </div>
   </div>
 
   <div class="container-fluid px-5 mt-2">
@@ -83,7 +90,7 @@ require_once('includes/haut.php');
           </div>
           <div class="col-sm-3  p-5">
             <!-- Récupération des commentaires -->
-            <h3>commentaire<?= $annonce['id_annonce'] ?></h3>
+            <h3>Annonce n°<?= $annonce['id_annonce'] ?></h3>
             <div class="table">
               <?php if ($id_annonce) : ?>
                 <?php $commentaires1 = sql("SELECT `commentaire` FROM `commentaire` WHERE annonce_id = $id_annonce ORDER BY `date_enregistrement` DESC")  ?>
@@ -96,7 +103,7 @@ require_once('includes/haut.php');
                 <table id="tableau2">
                   <thead>
                     <tr>
-                      <th>Commentaire/</th>
+                      <th>Commentaires :</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -202,8 +209,8 @@ require_once('includes/haut.php');
                   add_flash('&#9888; Veuillez vous connecter pour déposer un commentaire ou une note pour cette annonce ', 'danger');
                 }
               }
-              header('location:' . URL . 'pageannonce.php');
-              exit();
+              // header('location:' . URL . 'annonce2.php');
+              // exit();
             }
           }
 
@@ -266,13 +273,13 @@ require_once('includes/haut.php');
               <input type="hidden" class="form-control" name="membre_id" id="membre_id" value="<?php echo $_SESSION['user']['id_membre'] ?? '' ?>">
             </div>
             <div class="mb-3">
-              <label for="annonce_id" class="form-label"></label>
-              <input type="text" class="form-control" id="annonce_id" name="annonce_id" value="<?php echo $annonce['id_annonce'] ?? '' ?>">
+              <label for="annonce_id" class="form-label">Annonce n° <?php echo $annonce['id_annonce'] ?? '' ?></label>
+              <input type="hidden" class="form-control" id="annonce_id" name="annonce_id" value="<?php echo $annonce['id_annonce'] ?? '' ?>">
             </div>
             <!-- Notation -->
             <div class="mb-3 text-start">
               <div>
-                <label for="annonce_id" class="form-label fs-5">Notez le membre </label>
+                <label for="annonce_id" class="form-label fs-5">Notez le vendeur </label>
               </div>
               <div class=" fs-3 d-inline">
                 <span class="far fa-star" data-star="1"></span>
@@ -331,11 +338,6 @@ require_once('includes/haut.php');
       </div>
     </div>
   </div>
-
-
-
-
-
 
 <?php endif ?>
 <?php
