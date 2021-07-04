@@ -65,3 +65,58 @@ function valid_donnees ($donnees){
     $donnees = htmlspecialchars($donnees);
     return $donnees;
 }
+
+// Ajouter une vue 
+function ajouter_vue(): void {
+
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur';
+    $fichier_journalier = $fichier . '-' . date('Y-m-d');
+    incrementer_compteur($fichier);
+    incrementer_compteur($fichier_journalier);
+
+}
+function incrementer_compteur(string $fichier):void {
+    $compteur = 1;
+    if(file_exists($fichier)){
+        $compteur = (int)file_get_contents($fichier);
+        $compteur++;
+    }
+    file_put_contents($fichier, $compteur);
+}
+
+// compte le nombre de vues
+function nombre_vues(): string {
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur';
+    return file_get_contents($fichier);
+}
+
+//nombre de vue par mois
+function nombre_vues_mois(int $annee, int $mois):int {
+$mois = str_pad($mois, 2, '0', STR_PAD_LEFT);
+$fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-'.$annee.'-'. $mois.'-'.'*';
+$files = glob($fichier);
+
+$total = 0;
+foreach( $files as $file){
+    $total += (int)file_get_contents($file);
+}
+return $total;
+}
+// détail des vues par mois
+function nombre_vues_details_mois(int $annee, int $mois):array {
+    $mois = str_pad($mois, 2, '0', STR_PAD_LEFT);
+    $fichier = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'data' . DIRECTORY_SEPARATOR . 'compteur-'.$annee.'-'. $mois.'-'.'*';
+    $files = glob($fichier);
+    $visites = [];
+    foreach( $files as $file){
+        $parties = explode('-', basename($file));
+        $visites[] =[
+            'annee' =>$parties[1],
+            'mois' =>$parties[2],
+            'jour' =>$parties[3],
+            'visites'=> file_get_contents($file)
+        ];
+
+    }
+    return $visites;
+    }
