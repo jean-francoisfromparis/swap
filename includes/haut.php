@@ -78,8 +78,7 @@
                   <li><a class="dropdown-item text-black effet3" href="<?php echo URL ?>admin/gestion_categories.php">Gestion des catégories</a></li>
                   <li><a class="dropdown-item text-black effet3" href="<?php echo URL ?>admin/gestion_membres1.php?page=1&id=3">Gestion des membres</a></li>
                   <li><a class="dropdown-item text-black effet3" href="<?php echo URL ?>admin/gestion_commentaires.php">Gestion des commentaires</a></li>
-                  <li><a class="dropdown-item text-black effet3" href="<?php echo URL ?>admin/gestion_notes.php">Gestion des notes</a></li>
-                  <li><a class="dropdown-item text-black effet3" href="<?php echo URL ?>admin/"></a></li>
+                  <li><a class="dropdown-item text-black effet3" href="<?php echo URL ?>admin/gestion_notes.php?page=1">Gestion des notes</a></li>
                   <li>
                     <hr class="dropdown-divider text-info fw-bold">
                   </li>

@@ -15,38 +15,27 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && !empty($_GET['id'])
 }
 
 
+//Gestion de la modification des commentaires - afin d'éviter des conflits dans la base de données seul le champ commentaire peut être modifié.
 
-
-//Gestion de la modification des commentaires - Bien que seuls les commentaires licencieux, injurieux ou mensongers soit légalement susceptible de modifications ou de censures. Nous donnons donc ici la possibilité à l’administrateur de modifier uniquement le champs commentaires (hors id).
-
-if(isset($_POST))
-{
+if (isset($_POST)) {
     $errors = 0;
-    if(!empty($_POST['commentaire']) && $_POST['commentaire'] != '')
-    {
+    if (!empty($_POST['commentaire']) && $_POST['commentaire'] != '') {
         $errors = 0;
-        if(strlen($_POST['commentaire']) > 300)
-        {
-            $errors ++;
+        if (strlen($_POST['commentaire']) > 300) {
+            $errors++;
             add_flash('&#9888; Veuillez déposer un commentaire comportant mois de 300 caractéres', 'danger');
-        }
-        else
-        { $errors = 0;
+        } else {
+            $errors = 0;
             $commentaire = valid_donnees($_POST['commentaire']);
             sql("UPDATE `commentaire` SET`commentaire`=:commentaire WHERE `id_commentaire` = $_POST[id_commentaire]", array(
                 'commentaire' =>  $commentaire
             ));
-            
-
         }
         add_flash("👍 Le commentaire a été modifié", 'success');
         header('location: gestion_commentaires.php');
         exit();
     }
-
 }
-
-
 
 //initialisation de la pagination
 $record_per_page = 5;
@@ -58,7 +47,7 @@ if (isset($_GET["page"])) {
 }
 
 $start_from = ($page - 1) * $record_per_page;
-
+//récupération des requêtes pour la pagination
 $query = "SELECT * FROM commentaire order by id_commentaire DESC LIMIT $start_from, $record_per_page";
 $result = sql($query);
 
@@ -114,7 +103,7 @@ require_once('../includes/haut.php');
                                 <td><textarea type="textarea" name="commentaire" class="form-control text-center text-wrap" placeholder="<?php echo $commentaire['commentaire'] ?>" rows="3"></textarea></td>
                                 <td><input type="text" name="date_enregistrement" class="form-control text-center text-wrap" placeholder="<?php echo $commentaire['date_enregistrement'] ?>"></td>
                                 <td style="width:3rem"> <button class="btn btn-info fa fa-edit" name="submit"></button></td>
-                                <td style="width:3rem"><a href="gestion_commentaires.php?action=delete&id=<?= $commentaire['id_commentaire'] ?>" ><span class="btn btn-danger  fas fa-trash" ></span></a></td>
+                                <td style="width:3rem"><a href="gestion_commentaires.php?action=delete&id=<?= $commentaire['id_commentaire'] ?>"><span class="btn btn-danger  fas fa-trash"></span></a></td>
                             </tr>
                         </form>
 
@@ -153,30 +142,13 @@ require_once('../includes/haut.php');
                         echo "</ul>";
                         echo "</nav>";
                     }
-                    if ($page > $total_pages) {
-                        header('location: gestion_commentaires.php');
-                        exit();
-                    }
+                   
         ?>
 
     <?php else : ?>
         <div class="mt-4 alert alert-info">Il n'y a pas encore de commentaires</div>
     <?php endif; ?>
     </div>
-
-    <?php
-    //traitement des GET pour la modification des commentaires
-    if (!empty($_GET['id'])) {
-
-        if (is_numeric(intval($_GET['id']))) {
-            $get = $_GET['id'];
-            $id_commentaire = intval($get);
-
-            // Requêtes de sélection des données de l'annonce cliqué par l'utilisateur
-            $commentaires1 = sql("SELECT * FROM commentaire WHERE $id_commentaire = id_commentaire");
-        }
-    }
-    ?>
 
 
 </div><!-- fin du container -->
