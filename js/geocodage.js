@@ -24,7 +24,7 @@ var send = $_id("send"),
                 lat = coords.lat;
                 lon = coords.lon;
                 
-                mapboxgl.accessToken = 'pk.eyJ1IjoiY2ljZXJvbiIsImEiOiJja3E1Yzc1MHEwOXQyMm9xb2gycjc1Ym1wIn0.fJ96rmd0A6bixomAUx5ZTQ';
+                mapboxgl.accessToken = '';
                 var map = new mapboxgl.Map({
                 container: 'mapid',
                 width: 750,
