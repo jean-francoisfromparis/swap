@@ -1,0 +1,132 @@
+//Photo2
+document.addEventListener('DOMContentLoaded', function(){
+
+    if(document.getElementById(`photo2`)){
+        document.getElementById('file2').addEventListener('change', function(event){
+            let fichier = event.target.files[0];
+            console.log(fichier);
+            let ext = ['image/jpeg', 'image/png']
+            if(ext.includes(fichier.type)){
+            let reader = new FileReader();
+            reader.readAsDataURL(fichier);
+            reader.onload = (e) => {
+                document.querySelector(`#photo2 img`).setAttribute('src',e.target.result);
+                //pour les annonces
+
+                if(document.getElementById('nom_original')){
+                    document.getElementById('nom_original').setAttribute('value', fichier.name);
+                    document.getElementById('data_img').setAttribute('value', e.target.result);
+                }
+            }
+        }
+        });
+    }
+    if(document.querySelectorAll('a.confirm')){
+        let confirmation = document.querySelectorAll('a.confirm');
+        for(let i=0; i<confirmation.length; i++){
+            if(document.querySelectorAll('a.confirm')){
+                let message = (confirmations[i].dataset.message) ? confirmations[i].dataset.message :
+                 'Êtes-vous sûr de vouloir supprimer cet élément ?';
+                 confirmations[i].onclick = () => {
+                     return (window.confirm(message));
+                 }
+            }
+        }
+    
+    }
+    //gestion du drag & drop des photos
+    if(document.getElementById('photo2')){
+        document.addEventListener('dragover',(e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            document.getElementById('photo2').style.border = '4px dashed blue';
+        });
+        document.addEventListener('dragleave',(e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            document.getElementById('photo2').style.border = '';
+        });
+        document.addEventListener('drop',(e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            document.getElementById('photo2').style.border = '';
+
+        });
+        document.getElementById('photo2').addEventListener('drop',(e)=>{
+            document.getElementById('photo2').style.border = '';
+            let fichier = e.dataTransfer.files;
+            document.getElementById('file2').files = fichier;
+
+            let event = new Event('change');
+            document.getElementById('file2').dispatchEvent(event);
+        });
+
+    }
+
+})
+//Photo3
+document.addEventListener('DOMContentLoaded', function(){
+
+    if(document.getElementById(`photo3`)){
+        document.getElementById('file3').addEventListener('change', function(event){
+            let fichier = event.target.files[0];
+            console.log(fichier);
+            let ext = ['image/jpeg', 'image/png']
+            if(ext.includes(fichier.type)){
+            let reader = new FileReader();
+            reader.readAsDataURL(fichier);
+            reader.onload = (e) => {
+                document.querySelector(`#photo3 img`).setAttribute('src',e.target.result);
+                //pour les annonces
+
+                if(document.getElementById('nom_original')){
+                    document.getElementById('nom_original').setAttribute('value', fichier.name);
+                    document.getElementById('data_img').setAttribute('value', e.target.result);
+                }
+            }
+        }
+        });
+    }
+    if(document.querySelectorAll('a.confirm')){
+        let confirmation = document.querySelectorAll('a.confirm');
+        for(let i=0; i<confirmation.length; i++){
+            if(document.querySelectorAll('a.confirm')){
+                let message = (confirmations[i].dataset.message) ? confirmations[i].dataset.message :
+                 'Êtes-vous sûr de vouloir supprimer cet élément ?';
+                 confirmations[i].onclick = () => {
+                     return (window.confirm(message));
+                 }
+            }
+        }
+    
+    }
+    //gestion du drag & drop des photos
+    if(document.getElementById('photo3')){
+        document.addEventListener('dragover',(e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            document.getElementById('photo3').style.border = '4px dashed blue';
+        });
+        document.addEventListener('dragleave',(e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            document.getElementById('photo3').style.border = '';
+        });
+        document.addEventListener('drop',(e)=>{
+            e.stopPropagation();
+            e.preventDefault();
+            document.getElementById('photo3').style.border = '';
+
+        });
+        document.getElementById('photo1').addEventListener('drop',(e)=>{
+            document.getElementById('photo1').style.border = '';
+            let fichier = e.dataTransfer.files;
+            document.getElementById('file1').files = fichier;
+
+            let event = new Event('change');
+            document.getElementById('file1').dispatchEvent(event);
+        });
+
+    }
+
+})

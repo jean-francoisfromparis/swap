@@ -1,0 +1,12 @@
+case 1:
+        $req .= " ORDER BY `prix` ASC";     // requêtes de sélection en fonction des tris par ordre
+        break;
+      case 2:
+        $req .= " ORDER BY `prix` DESC";
+        break;
+      case 3:
+        $req .= " ORDER BY `date_enregistrement` ASC";
+        break;
+      case 4:
+        $req .= " ORDER BY `date_enregistrement` DESC";;
+        break;

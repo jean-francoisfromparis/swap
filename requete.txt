@@ -1,0 +1,25 @@
+ORDER BY `prix` ASC limit 5 
+
+
+ select *, case
+               when age > 13 and sex=‘F’ then 1
+               when age >= 0 and sex=‘F’ then 2
+               when age < 0 or sex not in (‘F’,‘M’) then .
+               else 3
+           end as pop
+   from sashelp.class;
+
+
+SELECT 
+	(CASE 
+		WHEN etat = "1" AND Length(marque) > 0 THEN "Fiche complete"
+		WHEN etat = "1" AND isnull(marque) OR Length(marque) = 0 THEN "A Completer marque"
+		ELSE "Inactif"
+	END) AS "lbl etat" ,
+	COUNT(ID) AS NB
+FROM jeu_donnee
+GROUP BY (CASE 
+		WHEN etat = "1" AND Length(marque) > 0 THEN "Fiche complete"
+		WHEN etat = "1" AND isnull(marque) OR Length(marque) = 0 THEN "A Completer marque"
+		ELSE "Inactif"
+	END)

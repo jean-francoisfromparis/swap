@@ -1,0 +1,15 @@
+$('#triCategorie').change(function() {
+    let selection2 = 0;
+    selection2 = $('#triCategorie').val();
+    console.log(selection2);
+    if(selection2 == 0)
+    {
+        newdata=data;
+    }
+    else
+    {
+        newdata = $.grep(data, function (n, i) {
+            return (n.categorie_id ==  selection2);
+        });
+
+    }

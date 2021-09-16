@@ -2,7 +2,7 @@
 
 require_once('includes/init.php') ;
 
-$title= "Profil";
+$title= "Annonce";
 require_once ('includes/haut.php');
 ?>
 

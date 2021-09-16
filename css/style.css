@@ -1,6 +1,8 @@
+
 html body {
-    min-height: 100vh;
-    position: relative;
+    width: 100vw;
+    height: 200vh;
+    position: absolute;
 }
 @font-face {
     font-family:'AlexBrush-Regular';
@@ -13,13 +15,11 @@ html body {
 }
 main{
     position: relative;
-    top:8vh;
-    min-height: 100vh;
+    width: 100vw;
+    top: 8vh;
+    height: 1500px;
 }
-footer {
-    position: relative;
-    bottom: 0;
-}
+
 .effet:hover{
     color:aliceblue !important;
     transform: scale(1.2,1.2);
@@ -33,6 +33,9 @@ footer {
     left: 0;
     width:100vw; 
     height:auto;
+}
+.disparition{
+    z-index: 1000;
 }
 .card{
     border:none;
@@ -50,7 +53,7 @@ footer {
     transition-delay: 0s, 0s;
 }
 .titre{
-    position: absolute;
+    position: relative;
     bottom:40%;
 }
 .effet1:hover{
@@ -99,6 +102,80 @@ footer {
     transform: scale(1.2,1.2) !important;
 }
 .titre1{
-    position: absolute;
-    top:2vh;
+    position: relative;
+    top:1.5vh;
+}
+.recherchebar{
+    position:relative;
+    top:3vh;
+    width: 50vw;
+}
+footer{
+    position: relative;
+    bottom: 0px !important;
+    margin-top: 10px;
+    height: 25px;
+    padding-top:50px;
+    padding-bottom:50px;
+    transition-duration: 0.3s, 0.3s;
+}
+
+
+.editform{
+    position: relative;
+    top:5vh;
+}
+.titre2{
+    position: relative;
+    top:4vh;
+}
+.text-annonce{
+    text-align: justify;
+}
+.image1{
+    max-width: 250px;
+    height: auto;
+}
+.card-text{
+    text-align: justify !important;
+}
+#annonce{
+    position: relative;
+    width: 100%;
+    height: 150%;
+}
+#separateur{
+    position: relative;
+    width: 100%;
+    height: 30vh;
+}
+/* gallerie des modals d'annonces  */
+.image_galerie{
+    opacity: 0.8;
+    cursor: pointer;
+}
+.image_galerie:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+#mapid { 
+    width: 250px; 
+    height: 190px; 
+    border:solid 1px;
+}
+#mapid:active { 
+    transform: scale(3,3);
+    animation-duration: 30s;
+    z-index:20;
+    border:solid 1px;
+}
+
+a {
+    color: black !important;
+    text-decoration: none;
+}
+/* css de la notation */
+.checked
+{
+    color:orange;
 }
