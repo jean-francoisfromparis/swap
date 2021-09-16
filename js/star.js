@@ -14,14 +14,7 @@ function init()
 }
 function saveRating(e) { 
     removeEventListnerToAllStars();
-    rating.innerHTML = e.target.dataset.star;
-
-
-
-
-
-
-    
+    rating.innerHTML = e.target.dataset.star;  
 }
 function removeEventListnerToAllStars()
 {   allStars.forEach(star =>{

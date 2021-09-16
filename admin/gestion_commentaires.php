@@ -17,6 +17,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete' && !empty($_GET['id'])
 
 
 
+
 //Gestion de la modification des commentaires - Bien que seuls les commentaires licencieux, injurieux ou mensongers soit légalement susceptible de modifications ou de censures. Nous donnons donc ici la possibilité à l’administrateur de modifier uniquement le champs commentaires (hors id).
 
 if(isset($_POST))
@@ -32,11 +33,11 @@ if(isset($_POST))
         }
         else
         { $errors = 0;
+
             $commentaire = valid_donnees($_POST['commentaire']);
             sql("UPDATE `commentaire` SET`commentaire`=:commentaire WHERE `id_commentaire` = $_POST[id_commentaire]", array(
                 'commentaire' =>  $commentaire
             ));
-            
 
         }
         add_flash("👍 Le commentaire a été modifié", 'success');
@@ -44,9 +45,8 @@ if(isset($_POST))
         exit();
     }
 
+
 }
-
-
 
 //initialisation de la pagination
 $record_per_page = 5;
@@ -114,6 +114,7 @@ require_once('../includes/haut.php');
                                 <td><textarea type="textarea" name="commentaire" class="form-control text-center text-wrap" placeholder="<?php echo $commentaire['commentaire'] ?>" rows="3"></textarea></td>
                                 <td><input type="text" name="date_enregistrement" class="form-control text-center text-wrap" placeholder="<?php echo $commentaire['date_enregistrement'] ?>"></td>
                                 <td style="width:3rem"> <button class="btn btn-info fa fa-edit" name="submit"></button></td>
+
                                 <td style="width:3rem"><a href="gestion_commentaires.php?action=delete&id=<?= $commentaire['id_commentaire'] ?>" ><span class="btn btn-danger  fas fa-trash" ></span></a></td>
                             </tr>
                         </form>
@@ -153,6 +154,7 @@ require_once('../includes/haut.php');
                         echo "</ul>";
                         echo "</nav>";
                     }
+
                     if ($page > $total_pages) {
                         header('location: gestion_commentaires.php');
                         exit();
@@ -163,6 +165,7 @@ require_once('../includes/haut.php');
         <div class="mt-4 alert alert-info">Il n'y a pas encore de commentaires</div>
     <?php endif; ?>
     </div>
+
 
     <?php
     //traitement des GET pour la modification des commentaires
@@ -177,6 +180,7 @@ require_once('../includes/haut.php');
         }
     }
     ?>
+
 
 
 </div><!-- fin du container -->

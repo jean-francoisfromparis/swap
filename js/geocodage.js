@@ -23,7 +23,6 @@ var send = $_id("send"),
 				output.innerHTML = html;
                 lat = coords.lat;
                 lon = coords.lon;
-                
                 mapboxgl.accessToken = '';
                 var map = new mapboxgl.Map({
                 container: 'mapid',
